@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import  axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 const CreateCampingPage = () => { 
@@ -11,6 +12,7 @@ const CreateCampingPage = () => {
     const [state, setState] = useState('')
     const [country, setCoutry] = useState('')
     const [address, setAddress] = useState('')
+    const [email, setEmail] = useState('')
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
 
@@ -26,6 +28,7 @@ const CreateCampingPage = () => {
             state,
             country,
             address,
+            email,
             description,
             convenience
         }
@@ -33,6 +36,9 @@ const CreateCampingPage = () => {
         axios.post('http://localhost:3001/camps', newCamp)
             .then(response => {
                 console.log(response.data)
+                Swal.fire('Acampamento criado!')
+                navigate('/')
+
 
             })
             .catch(err => console.log(err))
@@ -48,6 +54,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={campName}
                             onChange={e => setCampName(e.target.value)}
+                            placeholder="Nome"
                         />
                     </div>
 
@@ -56,6 +63,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={campImage}
                             onChange={e => setcampImage(e.target.value)}
+                            placeholder="Imagem"
                         />
                     </div>
 
@@ -64,6 +72,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={city}
                             onChange={e => setCity(e.target.value)}
+                            placeholder="Cidade"
                         />
                     </div>
 
@@ -72,6 +81,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={state}
                             onChange={e => setState(e.target.value)}
+                            placeholder="Estado"
                         />
                     </div>
 
@@ -80,6 +90,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={country}
                             onChange={e => setCoutry(e.target.value)}
+                            placeholder="País"
                         />
                     </div>
 
@@ -88,6 +99,16 @@ const CreateCampingPage = () => {
                             type='text'
                             value={address}
                             onChange={e => setAddress(e.target.value)}
+                            placeholder="Endereço"
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type='email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                            placeholder="e-mail"
                         />
                     </div>
 
@@ -96,6 +117,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={description}
                             onChange={e => setDescription(e.target.value)}
+                            placeholder="Descrição"
                         />
                     </div>
 
@@ -104,6 +126,7 @@ const CreateCampingPage = () => {
                             type='text'
                             value={convenience}
                             onChange={e => setConvenience(e.target.value)}
+                            placeholder="Comodidades"
                         />
                     </div>
                     <button type='submit'>Criar</button>
