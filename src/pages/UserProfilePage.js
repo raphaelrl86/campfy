@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
+import {useParams} from "react-router-dom"
+import UserCard from "../components/UserCard"
 
 const UserProfilePage = props => {
     
@@ -52,7 +54,7 @@ const UserProfilePage = props => {
             <div className="row">
                 <h2>Stars</h2>
                 <div className="row">
-                    { users.length > 0 && users.map(user => {
+                    { user.length > 0 && user.map(user => {
                         return (
                             <UserCard star={user} key={user._id} />       
                         )
