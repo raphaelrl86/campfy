@@ -9,27 +9,27 @@ const UserProfilePage = props => {
 
     const { userId } = useParams()
 
-    // const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
 
-    // const headers = {
-    //     'Authorization': 'Bearer ' + token
-    // }
-
-    // useEffect(() => {
-    //     axios.get(`http://localhost:3001/users/${userId}`, {headers})
-    //     .then(response => {
-    //         setMovie(response.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // }, [])
+    const headers = {
+        'Authorization': 'Bearer ' + token
+    }
 
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/${userId}`)
+        axios.get(`http://localhost:3001/users/${userId}`, {headers})
         .then(response => {
             setUser(response.data)
         })
         .catch(err => console.log(err))
     }, [])
+
+    // useEffect(() => {
+    //     axios.get(`http://localhost:3001/users/${userId}`)
+    //     .then(response => {
+    //         setUser(response.data)
+    //     })
+    //     .catch(err => console.log(err))
+    // }, [])
 
     if(!user) {
         return <p>Loading...</p>
@@ -52,7 +52,7 @@ const UserProfilePage = props => {
                 </div>
             </div>
             <div className="row">
-                <h2>Stars</h2>
+                <h2>Usuario</h2>
                 <div className="row">
                     { user.length > 0 && user.map(user => {
                         return (
