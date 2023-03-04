@@ -6,6 +6,7 @@ import SignUpPage from './pages/SignUpPage';
 import CampingsListPage from './pages/CampingsListPage';
 import CampingDetailsPage from './pages/CampingDetailsPage';
 import UserProfilePage from './pages/UserProfilePage';
+import EditUserProfilePage from './pages/EditUserProfilePage';
 import LoginPage from './pages/LoginPage'
 import EditCampingPage from './pages/EditCampingPage';
 import IsLogged from './components/isLogged';
@@ -26,6 +27,7 @@ function App() {
         <Route path='/camps/:campId' element={<CampingDetailsPage />} />
         <Route path='/user/:userId' element={<UserProfilePage />} />
         <Route path='/login' element={<LoginPage />} />
+        <Route path='/edit/users/:userId' element={<EditUserProfilePage />} />
       </Routes>
       <Footer/>
   
