@@ -1,43 +1,41 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import axios from 'axios'
 import {useParams} from "react-router-dom"
 import UserCard from "../components/UserCard"
+import { AuthContext } from "../context/auth.context"
+
 
 const UserProfilePage = props => {
     
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState('')
+    const {isLoading, loggedInUser} = useContext(AuthContext)
 
     const { userId } = useParams()
 
-    const token = localStorage.getItem('token')
-
-    const headers = {
-        'Authorization': 'Bearer ' + token
-    }
-
+  
     useEffect(() => {
-        axios.get(`http://localhost:3001/users/${userId}`, {headers})
+        
+        const headers = {
+           
+            'Authorization': `Bearer ${loggedInUser.jwt}`
+
+        }
+        axios.get(`http://localhost:3001/users/:${userId}`, {headers})
         .then(response => {
             setUser(response.data)
         })
         .catch(err => console.log(err))
-    }, [])
+    }, [isLoading])
 
-    // useEffect(() => {
-    //     axios.get(`http://localhost:3001/users/${userId}`)
-    //     .then(response => {
-    //         setUser(response.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // }, [])
 
-    if(!user) {
-        return <p>Loading...</p>
+    if(!loggedInUser) {
+        return <p>Logue no site...</p>
     }
+   
 
     return (
         <div className="container">
-            <h1> Olá { user.name }, </h1>
+            <h1> Olá { !isLoading && loggedInUser.user.name }, </h1>
 
             <div className="row">
                 <div className="col-3">

@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
-import SignUpPage from './SignUpPage'
 
 const LoginPage = props => {
     const [email, setEmail] = useState('')
@@ -18,8 +17,10 @@ const LoginPage = props => {
 
         axios.post(`${process.env.REACT_APP_API_URL}/login`, payload)
             .then(response => {
-                localStorage.setItem('token', response.data.token)
+                localStorage.setItem('loggedInUser', JSON.stringify(response.data))
                 alert('Login Ok')
+                setEmail('')
+                setPassword('')
             })
             .catch(err => console.log(err))
     }
@@ -37,7 +38,7 @@ const LoginPage = props => {
                         <div className="card-body p-md-5 mx-md-4">
 
                             <div className="text-center">
-                            <img src={'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp'}
+                            <img src={'https://images.unsplash.com/photo-1517771778436-39f5763f5270?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'}
                                 style={{width:"185px"}} alt="logo"/>
                             <h4 className="mt-1 mb-5 pb-1">Frase de efeito</h4>
                             </div>
@@ -65,7 +66,7 @@ const LoginPage = props => {
                                 className="form-control"
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
-                                placeholder="Email"
+                                placeholder="Senha"
                                 />
                                 
                             </div>
@@ -98,37 +99,6 @@ const LoginPage = props => {
                 </div>
             </div>
             </section>
-
-
-
-
-
-
-
-
-
-
-
-            {/* <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <input 
-                        type="text"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                        placeholder="E-mail"
-                    />
-                </div>
-                <div>
-                    <input 
-                        type="password"
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                        placeholder="Password"
-                    />
-                </div>
-                <button type="submit">Login</button>
-            </form> */}
         </div>
     )
 }
