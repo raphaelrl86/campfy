@@ -9,11 +9,14 @@ import UserProfilePage from './pages/UserProfilePage';
 import LoginPage from './pages/LoginPage'
 import EditCampingPage from './pages/EditCampingPage';
 import IsLogged from './components/isLogged';
+import Navbar from "./components/Navbar";
+import Footer from './components/Footer';
 
 
 function App() {
   return (
     <div className="App">
+      <Navbar/>
       <Routes>
         <Route path='/' element= {<HomePage/>}/>
         <Route path='/signup' element= {<SignUpPage/>}/>
@@ -24,6 +27,8 @@ function App() {
         <Route path='/user/:userId' element={<UserProfilePage />} />
         <Route path='/login' element={<LoginPage />} />
       </Routes>
+      <Footer/>
+  
     </div>
   );
 }
