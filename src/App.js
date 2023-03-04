@@ -6,6 +6,7 @@ import SignUpPage from './pages/SignUpPage';
 import CampingsListPage from './pages/CampingsListPage';
 import CampingDetailsPage from './pages/CampingDetailsPage';
 import UserProfilePage from './pages/UserProfilePage';
+import EditUserProfilePage from './pages/EditUserProfilePage';
 import LoginPage from './pages/LoginPage'
 import EditCampingPage from './pages/EditCampingPage';
 import Navbar from "./components/Navbar";
@@ -30,6 +31,7 @@ function App() {
         <Route path='/create/camp' element= {<CreateCampingPage/>}/>
         <Route path='/edit/camp/:campId' element= {<EditCampingPage/>}/>
         <Route path='/camps/:campId' element={<CampingDetailsPage />} />
+        <Route path='/edit/users/:userId' element={<EditUserProfilePage />} />
         <Route path='/user/:userId' element={<IsLogged><UserProfilePage/></IsLogged>} />
       </Routes>
       </AuthProvider>
