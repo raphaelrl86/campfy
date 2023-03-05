@@ -13,22 +13,29 @@ const Navbar = () => {
         <nav className={`navbar bg-${theme}`}>
 
           <div className="container-fluid">
+
             <NavLink className="navbar-brand" to="/"> 
               {/* <img src= {DiceImage} alt="Logo de dados" width="30" height="24" className="d-inline-block align-text-top"/> */}
-              <span class="navbar-text">  Página inicial</span>
+              <span className="navbar-text">  Página inicial</span>
             </NavLink> 
+
             <NavLink className="navbar-brand" to="/signup"> 
               {/* <img src= {DiceImage} alt="Logo de dados" width="30" height="24" className="d-inline-block align-text-top"/> */}
-              <span class="navbar-text">  SignUp </span>
+              <span className="navbar-text">  SignUp </span>
             </NavLink> 
+
             <NavLink className="navbar-brand" to="/login"> 
               {/* <img src= {DiceImage} alt="Logo de dados" width="30" height="24" className="d-inline-block align-text-top"/> */}
-              <span class="navbar-text">  Login </span>
+              <span className="navbar-text">  Login </span>
             </NavLink> 
+
+            <button className="navbar-text" onClick={() => toggleTheme()}>Mudar tema</button>
+            
+            <NavLink className="navbar-text" to="/" button onClick={() => logout()} > Logout </NavLink>
+
           </div>
 
-          <button onClick={() => toggleTheme()}>Mudar tema</button>
-          <NavLink className="navbar-brand" to="/" button onClick={() => logout()} > Logout </NavLink>
+          
           
 
       </nav>

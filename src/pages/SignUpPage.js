@@ -25,11 +25,11 @@ const SignUpPage = props => {
             password,
         }
 
-        axios.post('http://localhost:3001/sign-up', payload)
+        axios.post(`${process.env.REACT_APP_API_URL}/sign-up`, payload)
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Usuário criado!')
-                navigate('/')
+                navigate('/login')
 
             })
             .catch(err => console.log(err))
