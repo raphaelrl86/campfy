@@ -1,10 +1,14 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const LoginPage = props => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
 
 
     const handleSubmit = e => {
@@ -18,9 +22,10 @@ const LoginPage = props => {
         axios.post(`${process.env.REACT_APP_API_URL}/login`, payload)
             .then(response => {
                 localStorage.setItem('loggedInUser', JSON.stringify(response.data))
-                alert('Login Ok')
+                Swal.fire('Bem-vindo!')
                 setEmail('')
                 setPassword('')
+                navigate('/')
             })
             .catch(err => console.log(err))
     }

@@ -30,8 +30,8 @@ function App() {
         <Route path='/camps' element= {<CampingsListPage/>}/>
         <Route path='/create/camp' element= {<CreateCampingPage/>}/>
         <Route path='/edit/camp/:campId' element= {<EditCampingPage/>}/>
-        <Route path='/camps/:campId' element={<CampingDetailsPage />} />
-        <Route path='/edit/users/:userId' element={<EditUserProfilePage />} />
+        <Route path='/camps/:campId' element={<IsLogged><CampingDetailsPage /></IsLogged>} />
+        <Route path='/edit/users/:userId' element={<IsLogged><EditUserProfilePage /></IsLogged>} />
         <Route path='/user/:userId' element={<IsLogged><UserProfilePage/></IsLogged>} />
       </Routes>
       </AuthProvider>

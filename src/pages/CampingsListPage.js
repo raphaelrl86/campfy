@@ -1,25 +1,12 @@
 import { useEffect, useState } from "react"
 import axios from 'axios'
 import CampCard from '../components/CampCard'
+import TesteCard from "../components/TesteCard"
 
 
 const CampingsListPage = () => {
 
     const [camps, setCamps] = useState([])
-
-    // const token = localStorage.getItem('token')
-
-    // const headers = {
-    //     'Authorization': 'Bearer ' + token
-    // }
-
-    // useEffect(() => {
-    //     axios.get('http://localhost:3001/camps', {headers})
-    //     .then(response => {
-    //         setCamps(response.data)
-    //     })
-    //     .catch(err => console.log(err))
-    // }, [])
 
     useEffect(() => {
         axios.get('http://localhost:3001/camps')
@@ -32,11 +19,12 @@ const CampingsListPage = () => {
     return (
         <div className="container">
             <h1>Camps</h1>
+            {/* <CampCard/> */}
 
             <div className="row">
                 { camps.length > 0 && camps.map(camp => {
                     return (
-                        <CampCard camp={camp} key={camp._id} />
+                        <TesteCard camp={camp} key={camp._id} />
                     )
                 })}
             </div>
