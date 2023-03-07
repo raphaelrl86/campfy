@@ -41,7 +41,7 @@ const CampingDetailsPage = props => {
         return <p>Loading...</p>
     }
 
-
+    console.log(camp)
     
     return ( 
         
