@@ -8,6 +8,7 @@ import { AuthContext } from "../context/auth.context"
 import CommentaryCard from '../components/CommentaryCard';
 
 
+
 const CampingDetailsPage = props => { 
 
     const [camp, setCamp] = useState(null)
@@ -16,19 +17,48 @@ const CampingDetailsPage = props => {
 
     const { campId } = useParams()
 
-    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
 
-    // const headers = {
-    //     'Authorization': 'Bearer ' + token
-    // }
+    // const token = localStorage.getItem('token')
 
+    const [commentary, setCommentary] = useState('')
+    const [rating, setRating] = useState('')
+    const headers = {
+           
+        'Authorization': `Bearer ${loggedInUser.jwt}`
+
+    }
+    // const [user, setUser] = useState('')
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        const newCommentary = {
+            commentary,
+            rating,
+            // user,
+            camp 
+        }
+
+        axios.post(`${process.env.REACT_APP_API_URL}/camps/${campId}/commentary`, newCommentary, {headers}) 
+        .then(response => {
+            console.log(response.data)
+            Swal.fire('Comentário criado!')
+            navigate(`/camps/${campId}`)
+
+
+    })
+    .catch(err => console.log(err))
+
+    }   
+
+        
     useEffect (() => {
 
-        const headers = {
+        // const headers = {
            
-            'Authorization': `Bearer ${loggedInUser.jwt}`
+        //     'Authorization': `Bearer ${loggedInUser.jwt}`
 
-        }
+        // }
 
         axios.get(`${process.env.REACT_APP_API_URL}/camps/${campId}`, {headers})
         .then(response => {
@@ -97,14 +127,58 @@ const CampingDetailsPage = props => {
                 </div>
             </div> */}
             <div className="row">
-                <h2>Camp</h2>
-                <div className="row">
-                    { camp.commentary.length > 0 && camp.commentary.map(commentary => {
-                        return (
-                            <CommentaryCard commentary={commentary} key={commentary._id} />       
-                        )
-                    })}
-                </div>
+                <h2>Comentários</h2>
+
+                <form onSubmit={e => handleSubmit(e)}>
+                    <div>
+                        <input
+                            type='number'
+                            value={rating}
+                            onChange={e => setRating(e.target.value)}
+                            placeholder="Nota"
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type='text'
+                            value={commentary}
+                            onChange={e => setCommentary(e.target.value)}
+                            placeholder="Comentário"
+                        />
+                    </div>
+{/* 
+                    <div>
+                        <input
+                            type='text'
+                            value={city}
+                            onChange={e => setCity(e.target.value)}
+                            placeholder="Cidade"
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type='text'
+                            value={state}
+                            onChange={e => setState(e.target.value)}
+                            placeholder="Estado"
+                        />
+                    </div> */}
+
+                    <button type='submit'>Enviar Comentário</button>
+                    
+                </form>
+                    
+
+                    <div className="row">
+                        { camp.commentary.length > 0 && camp.commentary.map(commentary => {
+                            return (
+                                <CommentaryCard commentary={commentary} key={commentary._id} />       
+                            )
+                        })}
+                    </div>
+                    
             </div>
         </div>
            
