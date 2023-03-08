@@ -9,9 +9,8 @@ const IsLogged = props => {
     if(isLoading){
         return <p>Loading...</p>
     }
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem(loggedInUser.jwt)
     
-    console.log('token', token)
 
     if(!loggedInUser.user._id) {
         return <Navigate to="/login"/>
