@@ -12,9 +12,8 @@ import EditCampingPage from './pages/EditCampingPage';
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
 import IsLogged from './components/isLogged';
+import IsAdmin from './components/isAdmin';
 import { AuthProvider } from './context/auth.context';
-
-
 
 
 function App() {
@@ -28,8 +27,8 @@ function App() {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element= {<SignUpPage/>}/>
         <Route path='/camps' element= {<CampingsListPage/>}/>
-        <Route path='/create/camp' element= {<CreateCampingPage/>}/>
-        <Route path='/edit/camp/:campId' element= {<EditCampingPage/>}/>
+        <Route path='/create/camp' element= {<IsAdmin><CreateCampingPage/></IsAdmin>}/>
+        <Route path='/edit/camp/:campId' element= {<IsAdmin><EditCampingPage/></IsAdmin>}/>
         <Route path='/camps/:campId' element={<IsLogged><CampingDetailsPage /></IsLogged>} />
         <Route path='/edit/users/:userId' element={<IsLogged><EditUserProfilePage /></IsLogged>} />
         <Route path='/user/:userId' element={<IsLogged><UserProfilePage/></IsLogged>} />

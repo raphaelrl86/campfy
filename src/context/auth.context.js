@@ -7,11 +7,12 @@ const AuthProvider = (props) => {
 
     const [loggedInUser, setLoggedInUser] = useState({token: '', user: {}})
     const [isLoading, setIsLoading] = useState(true)
+    
 
     const logout = () => {
         localStorage.removeItem('loggedInUser')
         setLoggedInUser({})
-    }
+    }   
     
 
     useEffect(() => {
@@ -25,6 +26,8 @@ const AuthProvider = (props) => {
         }
         setIsLoading(false)
     }, [])
+
+    
     
     return ( 
         <AuthContext.Provider value={{logout, isLoading, loggedInUser, setLoggedInUser}}>
