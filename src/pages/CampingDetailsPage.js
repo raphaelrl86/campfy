@@ -12,6 +12,9 @@ import CommentaryCard from '../components/CommentaryCard';
 const CampingDetailsPage = props => { 
 
     const [camp, setCamp] = useState(null)
+    const [refresh, setRefresh ] = useState(true)
+    const [commentary, setCommentary] = useState('')
+    const [rating, setRating] = useState('')
 
     const {isLoading, loggedInUser} = useContext(AuthContext)
 
@@ -21,8 +24,7 @@ const CampingDetailsPage = props => {
 
     // const token = localStorage.getItem('token')
 
-    const [commentary, setCommentary] = useState('')
-    const [rating, setRating] = useState('')
+    
     
     const headers = {
            
@@ -36,7 +38,6 @@ const CampingDetailsPage = props => {
         const newCommentary = {
             commentary,
             rating,
-            // user,
             camp 
         }
 
@@ -44,35 +45,26 @@ const CampingDetailsPage = props => {
         .then(response => {
             console.log(response.data)
             Swal.fire('Comentário criado!')
-            navigate(`/camps/${campId}`)
-
+            setRefresh(!refresh)   
 
     })
     .catch(err => console.log(err))
 
     }   
-
-        
     useEffect (() => {
-
-        // const headers = {
-           
-        //     'Authorization': `Bearer ${loggedInUser.jwt}`
-
-        // }
 
         axios.get(`${process.env.REACT_APP_API_URL}/camps/${campId}`, {headers})
         .then(response => {
            setCamp(response.data)
     })
         .catch(err => console.log(err))
-    }, [isLoading])
+    }, [isLoading, refresh])
 
     if(!camp) {
         return <p>Loading...</p>
     }
 
-    console.log(camp)
+    console.log(refresh)
     
     return ( 
         
