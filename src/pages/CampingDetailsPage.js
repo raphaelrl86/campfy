@@ -23,6 +23,7 @@ const CampingDetailsPage = props => {
 
     const [commentary, setCommentary] = useState('')
     const [rating, setRating] = useState('')
+    
     const headers = {
            
         'Authorization': `Bearer ${loggedInUser.jwt}`
