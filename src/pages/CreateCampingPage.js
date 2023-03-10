@@ -45,6 +45,17 @@ const CreateCampingPage = () => {
 
     }
 
+    const handleUpload = e => {
+        const uploadData = new FormData()
+        uploadData.append('campImage', e.target.files[0])
+        axios.post('http://localhost:3001/camps/upload', uploadData)
+        .then(response => {
+            setcampImage(response.data.url)
+        })
+        .catch(err => console.log(err))
+        alert('upload ok')
+    }
+
     return ( 
         <div>
             <h1>Criar camping</h1>
@@ -60,9 +71,9 @@ const CreateCampingPage = () => {
 
                     <div>
                         <input
-                            type='text'
+                            type='file'
                             value={campImage}
-                            onChange={e => setcampImage(e.target.value)}
+                            onChange={e => handleUpload(e.target.value)}
                             placeholder="Imagem"
                         />
                     </div>
