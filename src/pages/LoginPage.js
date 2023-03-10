@@ -25,7 +25,8 @@ const LoginPage = props => {
                 Swal.fire('Bem-vindo!')
                 setEmail('')
                 setPassword('')
-                navigate('/camps')
+                navigate('/')
+                
             })
             .catch(err => console.log(err))
     }

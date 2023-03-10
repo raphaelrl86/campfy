@@ -19,6 +19,7 @@ const CampingsListPage = () => {
     return (
         <div className="container">
             <h1>Camps</h1>
+            
             {/* <CampCard/> */}
 
             <div className="row">

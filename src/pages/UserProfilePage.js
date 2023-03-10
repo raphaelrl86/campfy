@@ -3,23 +3,23 @@ import axios from 'axios'
 import {useParams} from "react-router-dom"
 import UserCard from "../components/UserCard"
 import { AuthContext } from "../context/auth.context"
+import LoggedNavbar from "../components/LoggedNavbar"
 
 
 const UserProfilePage = props => {
     
     const [user, setUser] = useState('')
     const {isLoading, loggedInUser} = useContext(AuthContext)
-
     const { userId } = useParams()
 
+    const headers = {
+           
+        'Authorization': `Bearer ${loggedInUser.jwt}`
+
+    }
   
     useEffect(() => {
         
-        const headers = {
-           
-            'Authorization': `Bearer ${loggedInUser.jwt}`
-
-        }
         axios.get(`http://localhost:3001/users/:${userId}`, {headers})
         .then(response => {
             setUser(response.data)
