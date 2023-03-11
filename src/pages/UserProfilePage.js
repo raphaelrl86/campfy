@@ -35,7 +35,7 @@ const UserProfilePage = props => {
 
     return (
         <div className="container">
-            <h1> Olá { !isLoading && loggedInUser.user.name }, </h1>
+            <h1> Olá { !isLoading && user.name }, </h1>
             <Link className="btn btn-primary" to={`/edit/users/${user._id}`}>Editar</Link>
             <div className="row">
                 <div className="col-3">
