@@ -1,5 +1,5 @@
 import {NavLink} from 'react-router-dom'
-import {useContext} from 'react'
+import {useContext, useEffect} from 'react'
 import {ThemeContext} from '../context/theme.context'
 import {AuthContext} from '../context/auth.context'
 
@@ -10,6 +10,7 @@ const Navbar = () => {
   const {theme, toggleTheme} = useContext(ThemeContext)
   const {logout, loggedInUser} = useContext(AuthContext)
 
+  
 
 
     return ( 

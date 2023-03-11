@@ -8,7 +8,7 @@ const AuthProvider = (props) => {
     const [loggedInUser, setLoggedInUser] = useState({user: {}})
     // const [loggedInUser, setLoggedInUser] = useState({token: '', user: {}})
     const [isLoading, setIsLoading] = useState(true)
-
+    const [refresh, setRefresh] = useState(false)
     
 
     const logout = () => {
@@ -28,12 +28,12 @@ const AuthProvider = (props) => {
             
         }
         setIsLoading(false)
-    }, [])
+    }, [refresh])
 
     
     
     return ( 
-        <AuthContext.Provider value={{logout, isLoading, loggedInUser, setLoggedInUser}}>
+        <AuthContext.Provider value={{refresh, setRefresh, logout, isLoading, loggedInUser, setLoggedInUser}}>
             {props.children}
         </AuthContext.Provider>
 

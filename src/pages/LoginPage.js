@@ -1,13 +1,15 @@
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import {useContext} from 'react'
+import {AuthContext} from '../context/auth.context'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const LoginPage = props => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const {refresh, setRefresh} = useContext(AuthContext)
     const navigate = useNavigate()
 
 
@@ -25,7 +27,8 @@ const LoginPage = props => {
                 Swal.fire('Bem-vindo!')
                 setEmail('')
                 setPassword('')
-                navigate('/')
+                setRefresh(!refresh)
+                navigate('/camps')
                 
             })
             .catch(err => console.log(err))
