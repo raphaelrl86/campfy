@@ -68,34 +68,7 @@ const CampingDetailsPage = props => {
 
                     <CampDetailCard camp={camp} key={camp._id} />
 
-            
-                <div class="mt-5">
-
-                    { camp.convenience.length > 0 && camp.convenience.map(convenience => {
-                        return (
-                            <li> {convenience} </li>    
-                        )
-                    })}
-            </div>
         
-            
-
-            {/* <div className="row">
-                <div className="col-3">
-                    <img width="100%" src={camp.campImage} alt="profileImage" />
-                </div>
-                <div className="col-9">
-                    <p>Nome: {camp.campName}</p>
-                    <p>Email: {camp.email}</p>
-                    <p>Endereço: {camp.address}</p>
-                    <p>Cidade: {camp.city}</p>
-                    <p>Estado: {camp.state}</p>
-                    <p>País: {camp.country}</p>
-                    <p>Descrição: {camp.description}</p>
-                    <p>Comodidades: {camp.convenience}</p>
-                    <p>Comentários: {camp.commentary}</p>
-                </div>
-            </div> */}
             <div className="row">
                 <h2>Comentários</h2>
 
