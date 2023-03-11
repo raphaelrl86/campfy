@@ -1,5 +1,6 @@
 import CarouselImage from '../components/CarouselImage'
 import Banner from '../components/Banner';
+import Jumbotron from '../components/Jumbotron';
 
 const HomePage = () => {
 
@@ -9,6 +10,7 @@ const HomePage = () => {
             <CarouselImage/>
             <h1>HomePage</h1>
             <Banner/>
+            <Jumbotron/>
         </div>
      );
 }
