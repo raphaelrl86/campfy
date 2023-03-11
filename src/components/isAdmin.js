@@ -11,7 +11,7 @@ const IsAdmin = props => {
     }
     const token = localStorage.getItem('token')
     
-    console.log('token', token)
+
 
     if (!loggedInUser.user._id) {
         return <Navigate to="/login"/>

@@ -1,6 +1,7 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import  axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/auth.context"
 import Swal from 'sweetalert2'
 
 
@@ -16,7 +17,15 @@ const CreateCampingPage = () => {
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
 
+    const {loggedInUser} = useContext(AuthContext)
+
     const navigate = useNavigate()
+
+    const headers = {
+           
+        'Authorization': `Bearer ${loggedInUser.jwt}`
+
+    }
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -33,7 +42,7 @@ const CreateCampingPage = () => {
             convenience
         }
 
-        axios.post('http://localhost:3001/camps', newCamp)
+        axios.post('http://localhost:3001/camps', newCamp, {headers})
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Acampamento criado!')
@@ -47,8 +56,9 @@ const CreateCampingPage = () => {
 
     const handleUpload = e => {
         const uploadData = new FormData()
-        uploadData.append('campImage', e.target.files[0])
-        axios.post('http://localhost:3001/camps/upload', uploadData)
+        // console.log(e.target.files[0])
+        // uploadData.append('campImage', e.target.files[0])
+        axios.post('http://localhost:3001/camps/upload', uploadData, {headers})
         .then(response => {
             setcampImage(response.data.url)
         })
