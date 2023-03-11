@@ -17,6 +17,8 @@ const EditUserProfilePage = () => {
     const [address, setAddress] = useState('')
     const [profileImage, setProfileImage] = useState('')
     const [loading, setLoading] = useState(true)
+    const [uploading, setUploading] = useState(false)
+    
 
     const {loggedInUser} = useContext(AuthContext)
 
@@ -72,12 +74,13 @@ const EditUserProfilePage = () => {
 
     const handleUpload = e => {
         const uploadData = new FormData()
-        // console.log(e.target.files[0])
+        setUploading(true)
         uploadData.append('profileImage', e.target.files[0])
         axios.post('http://localhost:3001/users/upload', uploadData, {headers})
         .then(response => {
             setProfileImage(response.data.url)
             alert('Foto enviada!')
+            setUploading(false)
         })
         .catch(err => console.log(err))
     }
@@ -135,7 +138,7 @@ const EditUserProfilePage = () => {
                         />
                     </div>
 
-                    <button type='submit'>Editar</button>
+                    <button type='submit' disabled={uploading}>Salvar alterações</button>
                     
                 </form>
             )}

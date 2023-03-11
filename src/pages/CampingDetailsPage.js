@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import  axios from 'axios';
 import Swal from 'sweetalert2'
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from "../context/auth.context"
 import CommentaryCard from '../components/CommentaryCard';
@@ -19,6 +19,7 @@ const CampingDetailsPage = props => {
     const {isLoading, loggedInUser} = useContext(AuthContext)
 
     const { campId } = useParams()
+    const navigate = useNavigate()
 
       
     const headers = {
@@ -55,12 +56,26 @@ const CampingDetailsPage = props => {
         .catch(err => console.log(err))
     }, [isLoading, refresh])
 
+    const deleteCommentary = commentaryId => {
+        axios.delete(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {headers})
+        .then(response => {
+            Swal.fire({
+                position: 'top-middle',
+                icon: 'success',
+                title: 'Comentário excluído',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            
+            setRefresh(!refresh)
+        })
+        .catch(err => console.log(err))
+    }
+
     if(!camp) {
         return <p>Loading...</p>
     }
 
-    console.log(refresh)
-    
     return ( 
         
             
@@ -126,7 +141,7 @@ const CampingDetailsPage = props => {
                     <div className="row">
                         { camp.commentary.length > 0 && camp.commentary.map(commentary => {
                             return (
-                                <CommentaryCard commentary={commentary} key={commentary._id} />       
+                                <CommentaryCard deleteCommentary = {deleteCommentary} commentary={commentary} key={commentary._id} />       
                             )
                         })}
                     </div>
