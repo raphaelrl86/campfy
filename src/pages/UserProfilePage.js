@@ -3,7 +3,6 @@ import axios from 'axios'
 import {useParams} from "react-router-dom"
 import UserCard from "../components/UserCard"
 import { AuthContext } from "../context/auth.context"
-import LoggedNavbar from "../components/LoggedNavbar"
 
 
 const UserProfilePage = props => {

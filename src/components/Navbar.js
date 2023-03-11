@@ -15,58 +15,50 @@ const Navbar = () => {
 
     return ( 
 
-        <nav className={`navbar bg-${theme}`}>
+      <nav className={`navbar bg-${theme}`}>
 
-          <div className="container-fluid">
+        <div className="container-fluid">
 
             
-            <NavLink className="navbar-brand" to="/"> 
-              <span className="navbar-text">  Página inicial</span>
-            </NavLink> 
+          <NavLink className="navbar-brand" to="/"> 
+            <span className="navbar-text">  Página inicial</span>
+          </NavLink> 
             
 
-            <NavLink className="navbar-brand" to="/signup"> 
-              <span className="navbar-text">  SignUp </span>
-            </NavLink> 
+          <NavLink className="navbar-brand" to="/signup"> 
+            <span className="navbar-text">  SignUp </span>
+          </NavLink> 
             
            
-            <NavLink className="navbar-brand" to="/login"> 
-              <span className="navbar-text">  Login </span>
-            </NavLink>
+          <NavLink className="navbar-brand" to="/login"> 
+            <span className="navbar-text">  Login </span>
+          </NavLink>
 
-            <button className="navbar-text" onClick={() => toggleTheme()}>Mudar tema</button>
-            
-            {/* <NavLink className="navbar-text" to="/" button onClick={() => logout()} > Logout </NavLink> */}
-
-
-            {/* {loggedInUser?.user && <ol>
-            
-            <NavLink className="navbar-brand" to={`/user/:${loggedInUser.user._id}`}>
-              <span className="navbar-text"> {loggedInUser.user.name}  </span>
-            </NavLink></ol> }  */}
-
+          <button className="navbar-text" onClick={() => toggleTheme()}>Mudar tema</button>
             
 
-            {loggedInUser.jwt && (
-                <>
-                        <NavLink
-                          className="navbar-brand"
-                          to={`/user/${loggedInUser.user._id}`}
-                        >
-                          <span className="navbar-text"> Olá, {loggedInUser.user.name}</span>
-                        </NavLink>
-                        </>
-                      )}
-                      {loggedInUser.jwt && (
-                        <>
-                        <NavLink className="navbar-text" to="/" button onClick={() => logout()} > Logout </NavLink>
-                        </>
-                        )}
+          {loggedInUser.jwt && (
+            <>
+              <NavLink
+                className="navbar-brand"
+                to={`/user/${loggedInUser.user._id}`}
+              >
+                <span className="navbar-text"> Olá, {loggedInUser.user.name}</span>
+                  
+              </NavLink>
+            </>
 
-          </div>
+          )}
 
-          
-          
+
+          {loggedInUser.jwt && (
+            <>
+              <NavLink className="navbar-text" to="/" button onClick={() => logout()} > Logout </NavLink>
+            </>
+
+          )}
+
+        </div>
 
       </nav>
     );
