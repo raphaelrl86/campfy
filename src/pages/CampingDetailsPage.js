@@ -1,8 +1,7 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import  axios from 'axios';
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom';
-import { useContext } from 'react';
 import { AuthContext } from "../context/auth.context"
 import CommentaryCard from '../components/CommentaryCard';
 import CampDetailCard from '../components/CampDetailCard';
