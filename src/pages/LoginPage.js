@@ -1,9 +1,8 @@
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link , useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import {useContext} from 'react'
 import {AuthContext} from '../context/auth.context'
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 
 const LoginPage = props => {

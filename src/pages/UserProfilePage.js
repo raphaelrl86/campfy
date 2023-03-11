@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react"
-import axios from 'axios'
 import {useParams} from "react-router-dom"
-import UserCard from "../components/UserCard"
 import { AuthContext } from "../context/auth.context"
-import { Link } from "react-router-dom"
+import axios from 'axios'
+import ProfileCard from '../components/ProfileCard'
+import CommentaryCard from '../components/CommentaryCard'
 
 
-const UserProfilePage = props => {
+
+
+const UserProfilePage = () => {
     
     const [user, setUser] = useState('')
     const {isLoading, loggedInUser} = useContext(AuthContext)
@@ -34,31 +36,44 @@ const UserProfilePage = props => {
    
 
     return (
-        <div className="container">
-            <h1> Olá { !isLoading && user.name }, </h1>
-            <Link className="btn btn-primary" to={`/edit/users/${user._id}`}>Editar</Link>
+        <div className="container mb-4">
+            {/* <h1> Olá { !isLoading && user.name }, </h1> */}
+            <ProfileCard user={user} key={user._id}/>
+
+            {/* <div className="row">
+                        { user.commentary.length > 0 && user.commentary.map(commentary => {
+                            return (
+                                <CommentaryCard commentary={commentary} key={commentary._id} />       
+                            )
+                        })}
+            </div> */}
+
+            {/* <Link className="btn btn-primary" to={`/edit/users/${user._id}`}>Editar</Link>
             <div className="row">
                 <div className="col-3">
                     <img width="100%" src={user.profileImage} alt="profileImage" />
-                </div>
-                <div className="col-9">
-                    <p>Nome: {user.name} {user.surname}</p>
-                    <p>Email: {user.email}</p>
-                    <p>Endereço: {user.address}</p>
+                </div> */}
+                {/* <div className="col-9">
+                     */}
+                
+                
+                    {/* <p>Nome: {user.name} {user.surname}</p> */}
+                    {/* <p>Email: {user.email}</p> */}
+                    {/* <p>Endereço: {user.address}</p> */}
                     
-                    <p>{user.commentary}</p>
-                </div>
-            </div>
-            <div className="row">
-                <h2>Usuario</h2>
-                <div className="row">
+                    {/* <p>{user.commentary}</p> */}
+                {/* </div> */}
+            {/* </div> */}
+            {/* <div className="row">
+                <h2>Usuario</h2> */}
+                {/* <div className="row">
                     { user.length > 0 && user.map(user => {
                         return (
-                            <UserCard star={user} key={user._id} />       
+                            <ProfileCard user={user} key={user._id} />       
                         )
                     })}
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
                 
 
