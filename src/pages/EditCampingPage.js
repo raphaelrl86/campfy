@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import  axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
@@ -21,11 +21,18 @@ const EditCampingPage = () => {
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
     const [loading, setLoading] = useState(true)
+    const {loggedInUser} = useContext(AuthContext)
+
+    const headers = {
+           
+        'Authorization': `Bearer ${loggedInUser.jwt}`
+
+    }
 
     const navigate = useNavigate()
 
     useEffect (() => {
-        axios.get(`http://localhost:3001/camps/:${campId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/camps/${campId}`, {headers})
         .then(response => {
             let {
             campName,
@@ -66,7 +73,7 @@ const EditCampingPage = () => {
             convenience
         }
 
-        axios.put(`http://localhost:3001/camps/:${campId}`, updatedCamp)
+        axios.put(`${process.env.REACT_APP_API_URL}/camps/${campId}`, updatedCamp, {headers})
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Acampamento atualizado!')
