@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react';
 import  axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
@@ -20,7 +19,6 @@ const CampingDetailsPage = props => {
 
     const { campId } = useParams()
 
-    const navigate = useNavigate()
 
     // const token = localStorage.getItem('token')
 
