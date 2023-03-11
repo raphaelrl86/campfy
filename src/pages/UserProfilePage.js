@@ -4,6 +4,7 @@ import {useParams} from "react-router-dom"
 import UserCard from "../components/UserCard"
 import { AuthContext } from "../context/auth.context"
 import LoggedNavbar from "../components/LoggedNavbar"
+import { Link } from "react-router-dom"
 
 
 const UserProfilePage = props => {
@@ -20,7 +21,7 @@ const UserProfilePage = props => {
   
     useEffect(() => {
         
-        axios.get(`http://localhost:3001/users/:${userId}`, {headers})
+        axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}`, {headers})
         .then(response => {
             setUser(response.data)
         })
@@ -36,13 +37,13 @@ const UserProfilePage = props => {
     return (
         <div className="container">
             <h1> Olá { !isLoading && loggedInUser.user.name }, </h1>
-
+            <Link className="btn btn-primary" to={`/edit/users/${user._id}`}>Editar</Link>
             <div className="row">
                 <div className="col-3">
                     <img width="100%" src={user.profileImage} alt="profileImage" />
                 </div>
                 <div className="col-9">
-                    <p>Nome: {user.name} {user.surnam}</p>
+                    <p>Nome: {user.name} {user.surname}</p>
                     <p>Email: {user.email}</p>
                     <p>Endereço: {user.address}</p>
                     
@@ -59,6 +60,9 @@ const UserProfilePage = props => {
                     })}
                 </div>
             </div>
+
+                
+
         </div>
     )
 }
