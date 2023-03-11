@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom'
-
+import { useContext } from "react"
+import {AuthContext} from '../context/auth.context'
 
 const TesteCard = ({camp}) => {
+
+    const {loggedInUser} = useContext(AuthContext)
+    const admin = process.env.REACT_APP_ADMIN_VALIDATION;
 
     return ( 
 
@@ -13,7 +17,13 @@ const TesteCard = ({camp}) => {
                             <h4 className="card-title">{ camp.campName }</h4>
                             <p className="card-text">{camp.description}</p>
                             <p className="card-text">Made for usage, commonly searched for. Fork, like and use it. Just move the carousel div above the col containing the text for left alignment of images</p>
-                            <Link to={`/camps/${camp._id}`} className="mt-auto btn btn-primary">Ver detalhes</Link>
+                            <Link to={`/camps/${camp._id}`} className="mt-auto btn btn-primary m-2">Ver detalhes</Link>
+                            
+                            {loggedInUser.user.email === admin && (
+                                <Link to={`/edit/camp/${camp._id}`} className="mt-auto btn btn-primary m-2">Editar</Link> 
+
+                            )}
+
                         </div>
                     </div>
                 

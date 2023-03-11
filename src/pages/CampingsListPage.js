@@ -7,9 +7,11 @@ import TesteCard from "../components/TesteCard"
 const CampingsListPage = () => {
 
     const [camps, setCamps] = useState([])
+    
+    
 
     useEffect(() => {
-        axios.get('http://localhost:3001/camps')
+        axios.get(`${process.env.REACT_APP_API_URL}/camps`)
         .then(response => {
             setCamps(response.data)
         })

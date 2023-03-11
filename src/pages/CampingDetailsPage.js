@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from "../context/auth.context"
 import CommentaryCard from '../components/CommentaryCard';
+import CampDetailCard from '../components/CampDetailCard';
 
 
 
@@ -19,17 +20,13 @@ const CampingDetailsPage = props => {
 
     const { campId } = useParams()
 
-
-    // const token = localStorage.getItem('token')
-
-    
-    
+      
     const headers = {
            
         'Authorization': `Bearer ${loggedInUser.jwt}`
 
     }
-    // const [user, setUser] = useState('')
+
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -66,31 +63,13 @@ const CampingDetailsPage = props => {
     
     return ( 
         
-
-            <div class="row">
-            <div class="col-md-8">
-                <div class="pb-3">
-                
-                    <img width="100%" src={camp.campImage} alt="profileImage" />
-               
-                </div>
-                <div class="row">
-
-                    <div class="col-md-6">
-                        <p>{camp.campName}</p>
-                        <p>{camp.email}</p>
-                        <p>{camp.address}</p>
-                        <p>{camp.city}, {camp.state} | {camp.country}</p>
-                    </div>
-
-                    <div class="col-md-6">
-                        <p>{camp.description}</p>
-                    </div>
-
-                </div>
-            </div>
             
-            <div class="col-md-4 mt-5">
+            <div>
+
+                    <CampDetailCard camp={camp} key={camp._id} />
+
+            
+                <div class="mt-5">
 
                     { camp.convenience.length > 0 && camp.convenience.map(convenience => {
                         return (
@@ -138,24 +117,6 @@ const CampingDetailsPage = props => {
                             placeholder="Comentário"
                         />
                     </div>
-{/* 
-                    <div>
-                        <input
-                            type='text'
-                            value={city}
-                            onChange={e => setCity(e.target.value)}
-                            placeholder="Cidade"
-                        />
-                    </div>
-
-                    <div>
-                        <input
-                            type='text'
-                            value={state}
-                            onChange={e => setState(e.target.value)}
-                            placeholder="Estado"
-                        />
-                    </div> */}
 
                     <button type='submit'>Enviar Comentário</button>
                     
