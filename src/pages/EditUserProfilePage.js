@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useContext} from 'react';
 import  axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2'
@@ -15,23 +15,34 @@ const EditUserProfilePage = () => {
     const [surname, setSurname] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
+    const [profileImage, setProfileImage] = useState('')
     const [loading, setLoading] = useState(true)
+
+    const {loggedInUser} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
+    const headers = {
+           
+        'Authorization': `Bearer ${loggedInUser.jwt}`
+
+    }
+
     useEffect (() => {
-        axios.get(`http://localhost:3001/users/:${userId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}`, {headers})
         .then(response => {
             let {
             name,
             surname,
             email, 
             address,
+            profileImage
         } = response.data
             setName(name)
             setSurname(surname)
             setEmail(email)
             setAddress(address)
+            setProfileImage(profileImage)
             setLoading(false)
     })
     }, [userId])
@@ -44,9 +55,10 @@ const EditUserProfilePage = () => {
             surname,
             email, 
             address,
+            profileImage
         }
 
-        axios.put(`http://localhost:3001/users/:${userId}`, updatedUser)
+        axios.put(`${process.env.REACT_APP_API_URL}/users/${userId}`, updatedUser, {headers})
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Usuário atualizado!')
@@ -56,6 +68,18 @@ const EditUserProfilePage = () => {
             })
             .catch(err => console.log(err))
 
+    }
+
+    const handleUpload = e => {
+        const uploadData = new FormData()
+        // console.log(e.target.files[0])
+        uploadData.append('profileImage', e.target.files[0])
+        axios.post('http://localhost:3001/users/upload', uploadData, {headers})
+        .then(response => {
+            setProfileImage(response.data.url)
+            alert('Foto enviada!')
+        })
+        .catch(err => console.log(err))
     }
 
     return (         
@@ -103,7 +127,15 @@ const EditUserProfilePage = () => {
                         />
                     </div>
 
-                    
+                    <div>
+                        <input
+                            type='file'
+                            onChange={e => handleUpload(e)}
+                            placeholder="Foto perfil"
+                        />
+                    </div>
+
+                    <button type='submit'>Editar</button>
                     
                 </form>
             )}
