@@ -1,6 +1,14 @@
 import {Link} from 'react-router-dom'
+import { useContext } from 'react'
+import { AuthContext } from "../context/auth.context"
 
-const CommentaryCard = ({commentary}) => {
+const CommentaryCard = ({deleteCommentary, commentary}) => {
+
+    const {loggedInUser} = useContext(AuthContext)
+    const headers = {
+        'Authorization': `Bearer ${loggedInUser.jwt}`
+    }
+
     return ( 
 
         <div classNameName='col-3'>
@@ -9,6 +17,8 @@ const CommentaryCard = ({commentary}) => {
                     <h5 classNameName="card-title">{ commentary.user.name } {commentary.user.surname}</h5>
                     <p classNameName="card-text">{commentary.commentary}</p>
                     <p classNameName="card-text">{commentary.rating}</p>
+                    <Link className="btn btn-primary m-1" to={`/edit/camp/:campId`}>Editar</Link>
+                    <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
 
             </div>
