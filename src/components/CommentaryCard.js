@@ -17,7 +17,7 @@ const CommentaryCard = ({deleteCommentary, commentary}) => {
                     <h5 classNameName="card-title">{ commentary.user.name } {commentary.user.surname}</h5>
                     <p classNameName="card-text">{commentary.commentary}</p>
                     <p classNameName="card-text">{commentary.rating}</p>
-                    <Link className="btn btn-primary m-1" to={`/edit/camp/:campId`}>Editar</Link>
+                    <Link className="btn btn-primary m-1" to={`/edit/commentary/${commentary._id}`}> Editar</Link>
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
 
