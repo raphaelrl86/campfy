@@ -25,15 +25,17 @@ const Navbar = () => {
             <span className="navbar-text">  Página inicial</span>
           </NavLink> 
             
-
-          <NavLink className="navbar-brand" to="/signup"> 
-            <span className="navbar-text">  SignUp </span>
-          </NavLink> 
+          {!loggedInUser.jwt && (
+            <NavLink className="navbar-brand" to="/signup"> 
+              <span className="navbar-text">  SignUp </span>
+            </NavLink> 
+          )}
             
-           
-          <NavLink className="navbar-brand" to="/login"> 
-            <span className="navbar-text">  Login </span>
-          </NavLink>
+          {!loggedInUser.jwt && (
+            <NavLink className="navbar-brand" to="/login"> 
+                <span className="navbar-text">  Login </span>
+            </NavLink>
+          )}
 
           {/* <button className="navbar-text" onClick={() => toggleTheme()}>Mudar tema</button> */}
             
