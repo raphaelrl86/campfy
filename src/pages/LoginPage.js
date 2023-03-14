@@ -3,6 +3,7 @@ import { Link , useNavigate} from 'react-router-dom'
 import { useState } from 'react'
 import {useContext} from 'react'
 import {AuthContext} from '../context/auth.context'
+import campIllustration from '../images/campIllustration.png'
 import Swal from 'sweetalert2'
 
 const LoginPage = props => {
@@ -46,7 +47,7 @@ const LoginPage = props => {
                         <div className="card-body p-md-5 mx-md-4">
 
                             <div className="text-center">
-                            <img src={'https://images.unsplash.com/photo-1517771778436-39f5763f5270?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'}
+                            <img src={campIllustration}
                                 style={{width:"185px"}} alt="logo"/>
                             <h4 className="mt-1 mb-5 pb-1">Frase de efeito</h4>
                             </div>
