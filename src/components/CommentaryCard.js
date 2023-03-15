@@ -1,8 +1,13 @@
 import {Link} from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from "../context/auth.context"
 
+
 const CommentaryCard = ({deleteCommentary, commentary}) => {
+
+   
+   
+    const [rating, setRating] = useState('')
 
     const {loggedInUser} = useContext(AuthContext)
     const headers = {
@@ -21,6 +26,31 @@ const CommentaryCard = ({deleteCommentary, commentary}) => {
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
 
+            </div>
+
+            <div>
+            <form onSubmit={e => handleSubmit(e)}>
+                    <div>
+                        <input
+                            type='number'
+                            value={rating}
+                            onChange={e => setRating(e.target.value)}
+                            placeholder="Nota"
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type='text'
+                            value={commentary}
+                            onChange={e => setCommentary(e.target.value)}
+                            placeholder="Comentário"
+                        />
+                    </div>
+
+                    <button type='submit'>Enviar Comentário</button>
+                    
+                </form>
             </div>
 
             {/* estrutura novo card
