@@ -2,12 +2,18 @@ import {Link} from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from "../context/auth.context"
 
-const CommentaryCard = ({deleteCommentary, commentary}) => {
+const CommentaryCard = ({deleteCommentary, commentary, updateCommentary, updatedCommentary, updatedRating, setUpdatedCommentary, setUpdatedRating}) => {
 
     const {loggedInUser} = useContext(AuthContext)
+
+
+
+    
     const headers = {
         'Authorization': `Bearer ${loggedInUser.jwt}`
     }
+
+
 
     return ( 
 
@@ -17,11 +23,33 @@ const CommentaryCard = ({deleteCommentary, commentary}) => {
                     <h5 classNameName="card-title">{ commentary.user.name } {commentary.user.surname}</h5>
                     <p classNameName="card-text">{commentary.commentary}</p>
                     <p classNameName="card-text">{commentary.rating}</p>
-                    <Link className="btn btn-primary m-1" to={`/edit/commentary/${commentary._id}`}> Editar</Link>
+                    <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar</button>
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
 
             </div>
+
+
+            <form onSubmit={e => updateCommentary(e)}>
+                    <div>
+                        <input
+                            type='number'
+                            value={updatedRating}
+                            onChange={e => setUpdatedRating(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <input
+                            type='text'
+                            value={updatedCommentary}
+                            onChange={e => setUpdatedCommentary(e.target.value)}
+                        />
+                    </div>
+
+                    <button type='submit'>Atualizar</button>
+                    
+                </form>
 
             {/* estrutura novo card
             
