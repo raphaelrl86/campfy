@@ -3,16 +3,24 @@ import { useContext, useState } from 'react'
 import { AuthContext } from "../context/auth.context"
 
 
+
 const CommentaryCard = ({deleteCommentary, commentary}) => {
+
 
    
    
     const [rating, setRating] = useState('')
 
     const {loggedInUser} = useContext(AuthContext)
+
+
+
+    
     const headers = {
         'Authorization': `Bearer ${loggedInUser.jwt}`
     }
+
+
 
     return ( 
 
@@ -22,11 +30,12 @@ const CommentaryCard = ({deleteCommentary, commentary}) => {
                     <h5 classNameName="card-title">{ commentary.user.name } {commentary.user.surname}</h5>
                     <p classNameName="card-text">{commentary.commentary}</p>
                     <p classNameName="card-text">{commentary.rating}</p>
-                    <Link className="btn btn-primary m-1" to={`/edit/commentary/${commentary._id}`}> Editar</Link>
+                    <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar</button>
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
 
             </div>
+
 
             <div>
             <form onSubmit={e => handleSubmit(e)}>
@@ -36,6 +45,7 @@ const CommentaryCard = ({deleteCommentary, commentary}) => {
                             value={rating}
                             onChange={e => setRating(e.target.value)}
                             placeholder="Nota"
+
                         />
                     </div>
 
@@ -52,6 +62,7 @@ const CommentaryCard = ({deleteCommentary, commentary}) => {
                     
                 </form>
             </div>
+
 
             {/* estrutura novo card
             

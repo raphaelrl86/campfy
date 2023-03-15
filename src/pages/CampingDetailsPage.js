@@ -14,6 +14,10 @@ const CampingDetailsPage = props => {
     const [refresh, setRefresh ] = useState(true)
     const [commentary, setCommentary] = useState('')
     const [rating, setRating] = useState('')
+    const [updatedCommentary, setUpdatedCommentary] = useState('')
+    const [updatedRating, setUpdatedRating] = useState('')
+
+    
 
     const {isLoading, loggedInUser} = useContext(AuthContext)
 
@@ -35,6 +39,7 @@ const CampingDetailsPage = props => {
             rating,
             camp 
         }
+
 
         axios.post(`${process.env.REACT_APP_API_URL}/camps/${campId}/commentary`, newCommentary, {headers}) 
         .then(response => {
@@ -71,8 +76,19 @@ const CampingDetailsPage = props => {
         .catch(err => console.log(err))
     }
 
-    const updatedCommentary = (commentaryId, commentary) => {
-        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {commentary}, {headers})
+    const updateCommentary = (commentaryId, commentary) => {
+
+        const handleInputChange = e => {
+            e.preventDefault()
+            
+            const updateCommentary = {
+                updatedCommentary,
+                updatedRating
+            }
+
+
+
+        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
         .then(response => {
             Swal.fire({
                 position: 'top-middle',
@@ -85,6 +101,7 @@ const CampingDetailsPage = props => {
         })
         .catch(err => console.log(err))
     }
+}
 
 
 
@@ -131,7 +148,7 @@ const CampingDetailsPage = props => {
                     <div className="row">
                         { camp.commentary.length > 0 && camp.commentary.map(commentary => {
                             return (
-                                <CommentaryCard deleteCommentary = {deleteCommentary} updatedCommentary = {updatedCommentary} commentary={commentary} key={commentary._id} />       
+                                <CommentaryCard deleteCommentary = {deleteCommentary}  commentary={commentary} updateCommentary={updateCommentary}             updatedCommentary = {updateCommentary} rating = {rating} setCommentary={setUpdatedCommentary} setUpdatedRating={setUpdatedRating} key={commentary._id} />       
                             )
                         })}
                     </div>
