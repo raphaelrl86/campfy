@@ -4,12 +4,12 @@ import { AuthContext } from "../context/auth.context"
 
 
 
-const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleSubmit, setCommentary}) => {
+const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleInputChange, setCommentary}) => {
 
 
    
    
-    const [rating, setRating] = useState('')
+    // const [rating, setRating] = useState('')
 
     const {loggedInUser} = useContext(AuthContext)
 
@@ -30,15 +30,15 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleS
                     <h5 classNameName="card-title">{ commentary.user.name } {commentary.user.surname}</h5>
                     <p classNameName="card-text">{commentary.commentary}</p>
                     <p classNameName="card-text">{commentary.rating}</p>
-                    <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar</button>
+                    {/* <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar</button> */}
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
 
             </div>
 
 
-            <div>
-            <form onSubmit={e => handleSubmit(e)}>
+            {/* <div>
+            <form onSubmit={e => handleInputChange(e)}>
                     <div>
                         <input
                             type='number'
@@ -61,7 +61,7 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleS
                     <button type='submit'>Enviar Comentário</button>
                     
                 </form>
-            </div>
+            </div> */}
 
 
             {/* estrutura novo card

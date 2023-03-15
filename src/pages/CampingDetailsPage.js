@@ -14,8 +14,6 @@ const CampingDetailsPage = props => {
     const [refresh, setRefresh ] = useState(true)
     const [commentary, setCommentary] = useState('')
     const [rating, setRating] = useState('')
-    const [updatedCommentary, setUpdatedCommentary] = useState('')
-    const [updatedRating, setUpdatedRating] = useState('')
 
     
 
@@ -76,32 +74,32 @@ const CampingDetailsPage = props => {
         .catch(err => console.log(err))
     }
 
-    const updateCommentary = (commentaryId, commentary) => {
+//     const updateCommentary = (commentaryId, commentary) => {
 
-        const handleInputChange = e => {
-            e.preventDefault()
+//         const handleInputChange = e => {
+//             e.preventDefault()
             
-            const updateCommentary = {
-                updatedCommentary,
-                updatedRating
-            }
+//             const updateCommentary = {
+//                 updatedCommentary,
+//                 updatedRating
+//             }
 
 
 
-        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
-        .then(response => {
-            Swal.fire({
-                position: 'top-middle',
-                icon: 'success',
-                title: 'Comentário atualizado',
-                showConfirmButton: false,
-                timer: 1000
-                })
-            setRefresh(!refresh)
-        })
-        .catch(err => console.log(err))
-    }
-}
+//         axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
+//         .then(response => {
+//             Swal.fire({
+//                 position: 'top-middle',
+//                 icon: 'success',
+//                 title: 'Comentário atualizado',
+//                 showConfirmButton: false,
+//                 timer: 1000
+//                 })
+//             setRefresh(!refresh)
+//         })
+//         .catch(err => console.log(err))
+//     }
+// }
 
 
 
@@ -148,7 +146,7 @@ const CampingDetailsPage = props => {
                     <div className="row">
                         { camp.commentary.length > 0 && camp.commentary.map(commentary => {
                             return (
-                                <CommentaryCard deleteCommentary = {deleteCommentary}  commentary={commentary} updateCommentary={updateCommentary}             updatedCommentary = {updateCommentary} rating = {rating} setCommentary={setUpdatedCommentary} setUpdatedRating={setUpdatedRating} key={commentary._id} />       
+                                <CommentaryCard deleteCommentary = {deleteCommentary}  commentary={commentary}  rating = {rating} key={commentary._id} />       
                             )
                         })}
                     </div>
