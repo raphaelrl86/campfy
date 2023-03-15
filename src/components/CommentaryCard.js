@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context"
 
 
 
-const CommentaryCard = ({deleteCommentary, commentary}) => {
+const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleSubmit, setCommentary}) => {
 
 
    
