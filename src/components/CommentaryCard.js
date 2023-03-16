@@ -15,7 +15,8 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleI
     return ( 
 
         <div classNameName='col-3'>
-            <div classNameName="card" class="hr-blurry">                
+            <div classNameName="card">
+                <hr class="hr hr-blurry"/>          
                 <div classNameName="card-body">
                     <h5 classNameName="card-title">{ commentary.user.name } {commentary.user.surname}</h5>
                     <p classNameName="card-text">{commentary.commentary}</p>
