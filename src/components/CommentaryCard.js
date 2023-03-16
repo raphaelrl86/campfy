@@ -30,8 +30,8 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleI
                 <hr class="hr hr-blurry"/>          
                 <div classNameName="card-body">
                     <h5 classNameName="card-title">{ commentary.user.name } { commentary.user.surname }</h5>
-                    <input type="text" classNameName="card-text" value={commentary.commentary} />
-                    <input type="text" classNameName="card-text" value={commentary.rating} />
+                    <input type="text" classNameName="card-text m-2 block" value={commentary.commentary} />
+                    <input type="text" classNameName="card-text m-2 block" value={commentary.rating} />
                     <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button>
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}> Deletar </button>
                 </div>
