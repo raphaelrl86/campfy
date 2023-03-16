@@ -76,7 +76,7 @@ const EditUserProfilePage = () => {
         const uploadData = new FormData()
         setUploading(true)
         uploadData.append('profileImage', e.target.files[0])
-        axios.post('http://localhost:3001/users/upload', uploadData, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/users/upload`, uploadData, {headers})
         .then(response => {
             setProfileImage(response.data.url)
             alert('Foto enviada!')
