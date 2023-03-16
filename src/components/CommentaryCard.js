@@ -1,15 +1,53 @@
 import {Link} from 'react-router-dom'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from "../context/auth.context"
 
 const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleInputChange, setCommentary}) => {
 
-    // const [rating, setRating] = useState('')
+    const [rating, setRating] = useState()
+    const [commentary, setCommentary] = useState()
 
     const {loggedInUser} = useContext(AuthContext)
     
     const headers = {
         'Authorization': `Bearer ${loggedInUser.jwt}`
+    }
+
+    useEffect(() => {
+        console.log("commentary", commentary)
+        console.log("rating", rating)
+    });
+
+    useEffect (() => {
+        axios.get(`${process.env.REACT_APP_API_URL}/commentary/${commentary._id}`, {headers})
+        .then(response => {
+            let {
+                commentary
+            } = response.data 
+                setCommentary(commentary)
+        })
+    }, [campId])
+
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        const updateCommentary = {
+            commentary,
+            rating
+        }
+
+        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
+        .then(response => {
+            Swal.fire({
+                position: 'top-middle',
+                icon: 'success',
+                title: 'Comentário editado com sucesso!',
+                showConfirmButton: false,
+                timer: 1000
+              })
+            navigate('/') 
+        })
+        .catch(err => console.log(err))
     }
 
     return ( 
@@ -30,8 +68,18 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleI
                 <hr class="hr hr-blurry"/>          
                 <div classNameName="card-body">
                     <h5 classNameName="card-title">{ commentary.user.name } { commentary.user.surname }</h5>
-                    <input type="text" classNameName="card-text m-2 block" value={commentary.commentary} />
-                    <input type="text" classNameName="card-text m-2 block" value={commentary.rating} />
+                    <input 
+                        type="text" 
+                        classNameName="form-control m-2 block px-2" 
+                        value={commentary.commentary}
+                        onChange= {e => setCommentary(e.target.value)}
+                    />
+                    <input 
+                        type="text" 
+                        classNameName="form-control m-2 block px-2" 
+                        value={commentary.rating}
+                        onChange= {e => setRating(e.target.value)}
+                    />
                     <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button>
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}> Deletar </button>
                 </div>
