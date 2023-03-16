@@ -1,11 +1,13 @@
-import {Link} from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from "../context/auth.context"
+import axios from 'axios'
+import Swal from 'sweetalert2'
 
-const CommentaryCard = ({updateCommentary, deleteCommentary, handleInputChange, setCommentary}) => {
+const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => {
 
     const [rating, setRating] = useState()
-    const [commentary, setCommentary] = useState()
+    const [setCommentary] = useState()
     const navigate = useNavigate()
     
     const {loggedInUser} = useContext(AuthContext)
@@ -27,7 +29,7 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, handleInputChange, 
             } = response.data 
                 setCommentary(commentary)
         })
-    }, [campId])
+    })/*, [campId])*/
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -37,7 +39,7 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, handleInputChange, 
             rating
         }
 
-        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
+        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentary._id}`, {updateCommentary}, {headers})
         .then(response => {
             Swal.fire({
                 position: 'top-middle',
@@ -68,21 +70,23 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, handleInputChange, 
                 <div classNameName="card">
                 <hr class="hr hr-blurry"/>          
                 <div classNameName="card-body">
-                    <h5 classNameName="card-title">{ commentary.user.name } { commentary.user.surname }</h5>
-                    <input 
-                        type="text" 
-                        classNameName="form-control m-2 block px-2" 
-                        value={commentary.commentary}
-                        onChange= {e => setCommentary(e.target.value)}
-                    />
-                    <input 
-                        type="text" 
-                        classNameName="form-control m-2 block px-2" 
-                        value={commentary.rating}
-                        onChange= {e => setRating(e.target.value)}
-                    />
-                    <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button>
-                    <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}> Deletar </button>
+                    <form onSubmit={ handleSubmit }>
+                        <h5 classNameName="card-title">{ commentary.user.name } { commentary.user.surname }</h5>
+                        <input 
+                            type="text" 
+                            classNameName="form-control m-2 block px-2" 
+                            value={commentary.commentary}
+                            onChange= {e => setCommentary(e.target.value)}
+                        />
+                        <input 
+                            type="text" 
+                            classNameName="form-control m-2 block px-2" 
+                            value={commentary.rating}
+                            onChange= {e => setRating(e.target.value)}
+                        />
+                        <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button>
+                        <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}> Deletar </button>
+                    </form>
                 </div>
             </div>
 
