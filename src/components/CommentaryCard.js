@@ -26,10 +26,11 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { /
         .then(response => {
             let {
                 commentary
+
             } = response.data 
                 setCommentary(commentary)
         })
-    })/*, [campId])*/ //TO-DO: ver se precisa do campId, remover parênteses
+    },[commentary._id])/*, [campId])*/ //TO-DO: ver se precisa do campId, remover parênteses
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -70,7 +71,7 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { /
                 <div classNameName="card">
                 <hr class="hr hr-blurry"/>          
                 <div classNameName="card-body">
-                    <form onSubmit={ handleSubmit }>
+                    <form onSubmit={ e => handleSubmit(e) }>
                         <h5 classNameName="card-title">{ commentary.user.name } { commentary.user.surname }</h5>
                         <input 
                             type="text" 

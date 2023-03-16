@@ -71,6 +71,9 @@ const CreateCampingPage = () => {
         <div>
             <h1>Criar camping</h1>
                 <form onSubmit={e => handleSubmit(e)}>
+
+                    
+                    
                     <div>
                         <input
                             type='text'
@@ -80,13 +83,7 @@ const CreateCampingPage = () => {
                         />
                     </div>
 
-                    <div>
-                        <input
-                            type='file'
-                            onChange={e => handleUpload(e)}
-                            placeholder="Imagem"
-                        />
-                    </div>
+                    
 
                     <div>
                         <input
@@ -150,6 +147,20 @@ const CreateCampingPage = () => {
                             placeholder="Comodidades"
                         />
                     </div>
+
+                    <div>
+                    
+                        <input
+                            className="form-control"
+                            id="formFile"
+                            type="file"
+                            accept="image/*"
+                            multiple
+                            onChange={e => handleUpload(e)}
+                            placeholder="Imagem"
+                        />
+                    </div>
+
                     <button type='submit'>Criar</button>
                     
                 </form>
