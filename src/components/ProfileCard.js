@@ -33,8 +33,10 @@ const ProfileCard = ({user}) => {
                             <p className="small text-muted mb-0">Followers</p>
                         </div> */}
                         <div>
-                            <p className="mb-1 h5">Inserir quantidade de comentários </p>
-                            <p className="small text-muted mb-0">Comentários</p>
+
+                            
+                            {/* <p className="mb-1 h5">{user.commentary.length}</p>
+                            <p className="small text-muted mb-0">Comentários</p> */}
                         </div>
                         </div>
                     </div> 

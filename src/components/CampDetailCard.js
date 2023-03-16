@@ -15,8 +15,13 @@ const CampDetailCard = ({camp}) => {
         <div className="card m-5">
 
             <Carousel wrapAround={true} zoomScale={0.1} style={{height:"500px"}} >
-                <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" className="card-img-top" alt="Wild Landscape"/>
-                <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" className="card-img-top" alt="Wild Landscape"/>
+                
+                {camp.campImage.length > 0 && camp.campImage.map(image => {
+                    return(
+                <img src={image} className="card-img-top" alt={image.alt} style={{width:"100vw", height:"500px", objectFit: 'cover'}} />)
+                    })}
+                {/* <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" className="card-img-top" alt="Wild Landscape"/>
+                <img src="https://mdbcdn.b-cdn.net/img/new/slides/041.webp" className="card-img-top" alt="Wild Landscape"/> */}
                 {/* <img src={campImage} alt='imagem de acampamento' style={{width:"100vw", height:"500px", objectFit: 'cover'}}/>
                 <img src={coffeeCampImage} alt='imagem de xícaras de café em acampamento'style={{width:"100vw", height:"500px", objectFit: 'cover'}} />
                 <img src={bonfireCampImage} alt='imagem de fogueira em acampamento' style={{width:"100vw", height:"500px", objectFit: 'cover'}} /> */}
