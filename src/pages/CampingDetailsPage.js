@@ -67,7 +67,7 @@ const CampingDetailsPage = props => {
         .catch(err => console.log(err))
     }
 
-    const updateCommentary = (commentaryId, commentary) => {
+    const updateCommentary = (commentaryId, updatedCommentary, updatedRating) => {
 
         const handleInputChange = e => {
             e.preventDefault()
