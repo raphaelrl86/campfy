@@ -42,7 +42,7 @@ const CreateCampingPage = () => {
             convenience
         }
 
-        axios.post('http://localhost:3001/camps', newCamp, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/camps`, newCamp, {headers})
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Acampamento criado!')
