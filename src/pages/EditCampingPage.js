@@ -12,7 +12,7 @@ const EditCampingPage = () => {
     const { campId } = useParams()
 
     const [campName, setCampName] = useState('')
-    const [campImage, setcampImage] = useState('')
+    const [campImage, setCampImage] = useState('')
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [country, setCoutry] = useState('')
@@ -21,7 +21,7 @@ const EditCampingPage = () => {
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
     const [loading, setLoading] = useState(true)
-    const [uploading, setUploading] = useState(false)
+   const [uploading, setUploading] = useState(false)
     const {loggedInUser} = useContext(AuthContext)
 
     const headers = {
@@ -47,7 +47,7 @@ const EditCampingPage = () => {
             convenience
         } = response.data
             setCampName(campName)
-            setcampImage(campImage)
+            setCampImage(campImage)
             setCity(city)
             setState(state)
             setCoutry(country)
@@ -87,19 +87,19 @@ const EditCampingPage = () => {
     }
 
     const handleUpload = e => {
-        const uploadData = new FormData()
-        setUploading(true)
-        // console.log(e.target.files[0])
-        uploadData.append('campImage', e.target.files[0])
-        axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
-            .then(response => {
-                console.log(response.data)
-                setcampImage(response.data.imageUrl)
-                setUploading(false)
-                alert('Imagem enviada com sucesso!')
-            })
-            .catch(err => console.log(err))
-    }
+         const uploadData = new FormData()
+         setUploading(true)
+        console.log(e.target.files[0])
+         uploadData.append('campImage', e.target.files[0])
+         axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
+             .then(response => {
+                 console.log(response.data)
+                 setCampImage(response.data.url)
+                 setUploading(false)
+                 alert('Imagem enviada com sucesso!')
+             })
+             .catch(err => console.log(err))
+     }
 
 
     return ( 
@@ -124,7 +124,6 @@ const EditCampingPage = () => {
                     <div>
                         <input
                             type='file'
-                            value={campImage}
                             onChange={e => handleUpload(e)}
                             placeholder="Imagem"
                         />
@@ -192,6 +191,7 @@ const EditCampingPage = () => {
                             placeholder="Comodidades"
                         />
                     </div>
+                    
                     <button type='submit' disabled={uploading}>Editar</button>
                     
                     
