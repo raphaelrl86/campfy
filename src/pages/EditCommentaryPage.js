@@ -6,7 +6,6 @@ import Swal from 'sweetalert2'
 
 const EditCommentaryPage = ({commentary}) => {
 
-
     const [commentary, setCommentary] = useState('')
     const [rating, setRating] = useState('')
     const [loading, setLoading] = useState(true)
@@ -14,9 +13,7 @@ const EditCommentaryPage = ({commentary}) => {
     const navigate = useNavigate()
 
     const headers = {
-           
         'Authorization': `Bearer ${loggedInUser.jwt}`
-
     }
     
     useEffect (() => {
@@ -51,12 +48,8 @@ const EditCommentaryPage = ({commentary}) => {
         .catch(err => console.log(err))
     }
 
-
-
     return ( 
-
         <div className="EditCommentaryPage">
-
             <div className="py-6 bg-gray-100">
                 <div className= 'container-fluid'>
                     <div className='text-center pb-lg-4 pt-5'>
@@ -67,13 +60,10 @@ const EditCommentaryPage = ({commentary}) => {
 
             {!loading && (
                 
-
             <div className="container text-center pt-1">
                 <div className="row pt-3">
                 <form onSubmit={ handleSubmit }>
-
                     <div class="col-6">
-
                         <div className='col-md-6'>
                         
                             <input 
@@ -82,12 +72,9 @@ const EditCommentaryPage = ({commentary}) => {
                                 value = {commentary}
                                 onChange= {e => setCommentary(e.target.value)}
                             />
-
                         </div>
 
                         <div className='col-md-6'>
-    
-
                             <input 
                                 type='number'
                                 className="form-control"

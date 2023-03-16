@@ -15,20 +15,14 @@ const CampingDetailsPage = props => {
     const [commentary, setCommentary] = useState('')
     const [rating, setRating] = useState('')
 
-    
-
     const {isLoading, loggedInUser} = useContext(AuthContext)
 
     const { campId } = useParams()
     const navigate = useNavigate()
 
-      
-    const headers = {
-           
+    const headers = {           
         'Authorization': `Bearer ${loggedInUser.jwt}`
-
     }
-
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -37,7 +31,6 @@ const CampingDetailsPage = props => {
             rating,
             camp 
         }
-
 
         axios.post(`${process.env.REACT_APP_API_URL}/camps/${campId}/commentary`, newCommentary, {headers}) 
         .then(response => {
@@ -74,32 +67,30 @@ const CampingDetailsPage = props => {
         .catch(err => console.log(err))
     }
 
-//     const updateCommentary = (commentaryId, commentary) => {
+    const updateCommentary = (commentaryId, commentary) => {
 
-//         const handleInputChange = e => {
-//             e.preventDefault()
+        const handleInputChange = e => {
+            e.preventDefault()
             
-//             const updateCommentary = {
-//                 updatedCommentary,
-//                 updatedRating
-//             }
+            const updateCommentary = {
+                updatedCommentary,
+                updatedRating
+            }
 
-
-
-//         axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
-//         .then(response => {
-//             Swal.fire({
-//                 position: 'top-middle',
-//                 icon: 'success',
-//                 title: 'Comentário atualizado',
-//                 showConfirmButton: false,
-//                 timer: 1000
-//                 })
-//             setRefresh(!refresh)
-//         })
-//         .catch(err => console.log(err))
-//     }
-// }
+        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
+        .then(response => {
+            Swal.fire({
+                position: 'top-middle',
+                icon: 'success',
+                title: 'Comentário atualizado',
+                showConfirmButton: false,
+                timer: 1000
+                })
+            setRefresh(!refresh)
+        })
+        .catch(err => console.log(err))
+    }
+}
 
     if(!camp) {
         return <p>Loading...</p>
@@ -137,7 +128,7 @@ const CampingDetailsPage = props => {
                     <div className="row">
                         { camp.commentary.length > 0 && camp.commentary.map(commentary => {
                             return (
-                                <CommentaryCard deleteCommentary = {deleteCommentary}  commentary={commentary}  rating = {rating} key={commentary._id} />       
+                                <CommentaryCard deleteCommentary={deleteCommentary} updateCommentary={updateCommentary} commentary={commentary} rating={rating} key={commentary._id} />     
                             )
                         })}
                     </div>
