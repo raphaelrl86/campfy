@@ -69,29 +69,44 @@ const CreateCampingPage = () => {
 
     return ( 
         <div>
-            <h1>Criar camping</h1>
+
+            <div className="py-6 bg-gray-100">
+                <div className= 'container-fluid'>
+                    <div className='text-center pb-lg-4 pt-5'>
+                        <h2 className='h2 mt-2 mb-1'>Criar acampamento</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div className="container text-center pt-1">
+                <div className="row pt-3"></div>
+
                 <form onSubmit={e => handleSubmit(e)}>
 
                     
                     
-                    <div>
-                        <input
-                            type='text'
-                            value={campName}
-                            onChange={e => setCampName(e.target.value)}
-                            placeholder="Nome"
-                        />
+                    <div className="col-6">
+                        <div className='col-md-6'>
+                            <input
+                                type='text'
+                                value={campName}
+                                onChange={e => setCampName(e.target.value)}
+                                placeholder="Nome"
+                            />
+                        </div>
                     </div>
 
                     
 
-                    <div>
-                        <input
-                            type='text'
-                            value={city}
-                            onChange={e => setCity(e.target.value)}
-                            placeholder="Cidade"
-                        />
+                    <div className="col-6">
+                        <div className='col-md-6'>
+                            <input
+                                type='text'
+                                value={city}
+                                onChange={e => setCity(e.target.value)}
+                                placeholder="Cidade"
+                            />
+                        </div>
                     </div>
 
                     <div>
@@ -164,6 +179,9 @@ const CreateCampingPage = () => {
                     <button type='submit'>Criar</button>
                     
                 </form>
+
+                </div>
+                
         </div>
      );
 }
