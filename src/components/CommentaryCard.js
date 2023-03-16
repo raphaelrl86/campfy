@@ -2,12 +2,12 @@ import {Link} from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react'
 import { AuthContext } from "../context/auth.context"
 
-const CommentaryCard = ({/*updateCommentary, deleteCommentary,*/ commentary, handleInputChange, setCommentary}) => {
+const CommentaryCard = ({updateCommentary, deleteCommentary, handleInputChange, setCommentary}) => {
 
     const [rating, setRating] = useState()
     const [commentary, setCommentary] = useState()
     const navigate = useNavigate()
-
+    
     const {loggedInUser} = useContext(AuthContext)
     
     const headers = {
