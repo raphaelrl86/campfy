@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context"
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => {
+const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { //TO-DO: ver como chamar o método de update
 
     const [rating, setRating] = useState()
     const [setCommentary] = useState()
@@ -29,7 +29,7 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => {
             } = response.data 
                 setCommentary(commentary)
         })
-    })/*, [campId])*/
+    })/*, [campId])*/ //TO-DO: ver se precisa do campId, remover parênteses
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -84,7 +84,7 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => {
                             value={commentary.rating}
                             onChange= {e => setRating(e.target.value)}
                         />
-                        <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button>
+                        <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button> //TO-DO: ver como chamar o método de update
                         <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}> Deletar </button>
                     </form>
                 </div>
