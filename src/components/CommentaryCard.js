@@ -2,25 +2,15 @@ import {Link} from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { AuthContext } from "../context/auth.context"
 
-
-
 const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleInputChange, setCommentary}) => {
 
-
-   
-   
     // const [rating, setRating] = useState('')
 
     const {loggedInUser} = useContext(AuthContext)
-
-
-
     
     const headers = {
         'Authorization': `Bearer ${loggedInUser.jwt}`
     }
-
-
 
     return ( 
 
@@ -33,19 +23,17 @@ const CommentaryCard = ({updateCommentary, deleteCommentary, commentary, handleI
                     {/* <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar</button> */}
                     <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}>Deletar</button>
                 </div>
-
             </div>
-
 
             {/* <div>
             <form onSubmit={e => handleInputChange(e)}>
+
                     <div>
                         <input
                             type='number'
                             value={rating}
                             onChange={e => setRating(e.target.value)}
                             placeholder="Nota"
-
                         />
                     </div>
 

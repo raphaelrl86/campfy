@@ -101,21 +101,14 @@ const CampingDetailsPage = props => {
 //     }
 // }
 
-
-
-
     if(!camp) {
         return <p>Loading...</p>
     }
 
     return ( 
-        
-            
             <div>
-
                     <CampDetailCard camp={camp} key={camp._id} />
 
-        
             <div className="row">
                 <h2>Comentários</h2>
 
@@ -139,9 +132,7 @@ const CampingDetailsPage = props => {
                     </div>
 
                     <button type='submit'>Enviar Comentário</button>
-                    
                 </form>
-                    
 
                     <div className="row">
                         { camp.commentary.length > 0 && camp.commentary.map(commentary => {
@@ -150,12 +141,9 @@ const CampingDetailsPage = props => {
                             )
                         })}
                     </div>
-                    
             </div>
         </div>
-           
     );
 }
-
  
 export default CampingDetailsPage;
