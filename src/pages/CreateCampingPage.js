@@ -58,7 +58,7 @@ const CreateCampingPage = () => {
         const uploadData = new FormData()
         // console.log(e.target.files[0])
         uploadData.append('campImage', e.target.files[0])
-        axios.post('http://localhost:3001/camps/upload', uploadData, {headers})
+        axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
         .then(response => {
             setcampImage(response.data.url)
             alert('upload ok')
