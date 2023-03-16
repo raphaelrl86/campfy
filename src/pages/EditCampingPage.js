@@ -193,7 +193,7 @@ const EditCampingPage = () => {
                         />
                     </div>
                     <button type='submit' disabled={uploading}>Editar</button>
-                    <button className="btn btn-danger m-1" onClick={() => deleteCamp(camp._id)}> Excluir camp </button>
+                    
                     
                 </form>
             )}
