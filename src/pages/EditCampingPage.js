@@ -21,6 +21,7 @@ const EditCampingPage = () => {
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
     const [loading, setLoading] = useState(true)
+    const [uploading, setUploading] = useState(false)
     const {loggedInUser} = useContext(AuthContext)
 
     const headers = {
@@ -85,6 +86,22 @@ const EditCampingPage = () => {
 
     }
 
+    const handleUpload = e => {
+        const uploadData = new FormData()
+        setUploading(true)
+        // console.log(e.target.files[0])
+        uploadData.append('campImage', e.target.files[0])
+        axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
+            .then(response => {
+                console.log(response.data)
+                setcampImage(response.data.imageUrl)
+                setUploading(false)
+                alert('Imagem enviada com sucesso!')
+            })
+            .catch(err => console.log(err))
+    }
+
+
     return ( 
 
         
@@ -106,9 +123,9 @@ const EditCampingPage = () => {
 
                     <div>
                         <input
-                            type='text'
+                            type='file'
                             value={campImage}
-                            onChange={e => setcampImage(e.target.value)}
+                            onChange={e => handleUpload(e)}
                             placeholder="Imagem"
                         />
                     </div>
@@ -175,7 +192,7 @@ const EditCampingPage = () => {
                             placeholder="Comodidades"
                         />
                     </div>
-                    <button type='submit'>Editar</button>
+                    <button type='submit' disabled={uploading}>Editar</button>
                     
                 </form>
             )}
