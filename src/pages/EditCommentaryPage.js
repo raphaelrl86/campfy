@@ -84,13 +84,9 @@ const EditCommentaryPage = ({commentary}) => {
 
                         </div>
                     </div>
-                        
-                    
                 </form>
                 </div>
             </div>
-
-            
             )}
         </div>
 
