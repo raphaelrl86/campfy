@@ -11,10 +11,7 @@ const IsAdmin = props => {
 
         return <p>Loading...</p>
     }
-    // const token = localStorage.getItem('token')
     
-
-
     if (!loggedInUser.user._id) {
         return <Navigate to="/login"/>
     } else if (loggedInUser.user.email !== admin) {

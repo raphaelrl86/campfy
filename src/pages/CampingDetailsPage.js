@@ -1,7 +1,7 @@
 import {useEffect, useState, useContext} from 'react';
 import  axios from 'axios';
 import Swal from 'sweetalert2'
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { AuthContext } from "../context/auth.context"
 import CommentaryCard from '../components/CommentaryCard';
 import CampDetailCard from '../components/CampDetailCard';
@@ -16,7 +16,6 @@ const CampingDetailsPage = props => {
     const {isLoading, loggedInUser} = useContext(AuthContext)
 
     const { campId } = useParams()
-    const navigate = useNavigate()
 
     const headers = {           
         'Authorization': `Bearer ${loggedInUser.jwt}`
@@ -65,30 +64,6 @@ const CampingDetailsPage = props => {
         .catch(err => console.log(err))
     }
 
-//     const updateCommentary = (commentaryId, updatedCommentary, updatedRating) => {
-
-//         const handleInputChange = e => {
-//             e.preventDefault()
-            
-//             const updateCommentary = {
-//                 updatedCommentary,
-//                 updatedRating
-//             }
-
-//         axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentaryId}`, {updateCommentary}, {headers})
-//         .then(response => {
-//             Swal.fire({
-//                 position: 'top-middle',
-//                 icon: 'success',
-//                 title: 'Comentário atualizado',
-//                 showConfirmButton: false,
-//                 timer: 1000
-//                 })
-//             setRefresh(!refresh)
-//         })
-//         .catch(err => console.log(err))
-//     }
-// }
 
     if(!camp) {
         return <p>Loading...</p>
@@ -96,41 +71,55 @@ const CampingDetailsPage = props => {
 
     return ( 
             <div>
-                    <CampDetailCard camp={camp} key={camp._id} />
+                
+                <CampDetailCard camp={camp} key={camp._id} />
 
-            <div className="row">
-                <h2>Comentários</h2>
+                <div className="row">
+                    
+                    <h4 className="mb-3">Comentários</h4>
+ 
+                    <form onSubmit={e => handleSubmit(e)}>
 
-                <form onSubmit={e => handleSubmit(e)}>
-                    <div>
-                        <input
-                            type='number'
-                            value={rating}
-                            onChange={e => setRating(e.target.value)}
-                            placeholder="Nota"
-                        />
-                    </div>
+                        <div className="d-flex justify-content-center mb-3">
+                            <p className="mb-0">
+                            
+                                <label for="exampleFormControlInput1">Escreva seu comentário</label>
+                                <textarea
+                                    type='text'
+                                    className='form-control m-2'
+                                    value={commentary}
+                                    onChange={e => setCommentary(e.target.value)}
+                                />
+                                
+                                <label for="exampleFormControlInput1">Avalie sua experiência</label>
+                                <input
+                                        type='number'
+                                        className='form-control m-2'
+                                        value={rating}
+                                        onChange={e => setRating(e.target.value)}
+                                        min="1" 
+                                        max="5"
+                                />
+                            
 
-                    <div>
-                        <input
-                            type='text'
-                            value={commentary}
-                            onChange={e => setCommentary(e.target.value)}
-                            placeholder="Comentário"
-                        />
-                    </div>
+                            </p>
 
-                    <button type='submit'>Enviar Comentário</button>
-                </form>
+                        </div>
 
-                    <div className="row">
-                        { camp.commentary.length > 0 && camp.commentary.map(commentary => {
-                            return (
-                                <CommentaryCard deleteCommentary={deleteCommentary} comments={commentary} rating={rating} key={commentary._id} />     
-                            )
-                        })}
-                    </div>
-            </div>
+                        <button className='btn btn-secondary mb-3' type='submit'>Enviar</button>
+                        <hr className="my-0 mt-2" />
+
+                    </form>
+
+                        <div className="row">
+                            { camp.commentary.length > 0 && camp.commentary.map(commentary => {
+                                return (
+                                    <CommentaryCard deleteCommentary={deleteCommentary} campComments={camp.commentary} comments={commentary} rating={rating} key={commentary._id} />     
+                                )
+                            })}
+                        </div>
+  
+                </div>
         </div>
     );
 }

@@ -42,11 +42,8 @@ const CampingsListPage = () => {
 
     return (
         <div className="container">
-            <h1>Camps</h1>
-            
-        
 
-            <div className="row">
+            <div className="row mb-3">
                 { camps.length > 0 && camps.map(camp => {
                     return (
                         <CampCard deleteCamp={deleteCamp} camp={camp} key={camp._id} />

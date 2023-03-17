@@ -56,18 +56,18 @@ const CreateCampingPage = () => {
 
     const handleUpload = e => {
         const uploadData = new FormData()
-        // console.log(e.target.files[0])
         uploadData.append('campImage', e.target.files[0])
         axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
         .then(response => {
             setcampImage(response.data.url)
-            alert('upload ok')
+            Swal.fire('upload ok')
         })
         .catch(err => console.log(err))
         
     }
 
     return ( 
+        
         <div>
 
             <div className="py-6 bg-gray-100">
@@ -90,6 +90,31 @@ const CreateCampingPage = () => {
                                     value={campName}
                                     onChange={e => setCampName(e.target.value)}
                                     placeholder="Nome"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    id="loginName"
+                                    type='email'
+                                    value={email}
+                                    onChange={e => setEmail(e.target.value)}
+                                    placeholder="Email"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={address}
+                                    onChange={e => setAddress(e.target.value)}
+                                    placeholder="Endereço"
                                 />
                             </div>
                         </div>
@@ -132,64 +157,51 @@ const CreateCampingPage = () => {
                             </div>
                         </div>
 
+
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
                                     className='form-control'
                                     type='text'
-                                    value={address}
-                                    onChange={e => setAddress(e.target.value)}
-                                    placeholder="Endereço"
+                                    value={description}
+                                    onChange={e => setDescription(e.target.value)}
+                                    placeholder="Descrição"
                                 />
                             </div>
                         </div>
 
-                        <div>
-                            <input
-                                type='email'
-                                value={email}
-                                onChange={e => setEmail(e.target.value)}
-                                placeholder="e-mail"
-                            />
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={convenience}
+                                    onChange={e => setConvenience(e.target.value)}
+                                    placeholder="Comodidades"
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <input
-                                type='text'
-                                value={description}
-                                onChange={e => setDescription(e.target.value)}
-                                placeholder="Descrição"
-                            />
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className="form-control"
+                                    id="formFile"
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    onChange={e => handleUpload(e)}
+                                    placeholder="Imagem"
+                                />
+                            </div>
                         </div>
 
-                        <div>
-                            <input
-                                type='text'
-                                value={convenience}
-                                onChange={e => setConvenience(e.target.value)}
-                                placeholder="Comodidades"
-                            />
-                        </div>
-
-                        <div>
-                        
-                            <input
-                                className="form-control"
-                                id="formFile"
-                                type="file"
-                                accept="image/*"
-                                multiple
-                                onChange={e => handleUpload(e)}
-                                placeholder="Imagem"
-                            />
-                        </div>
-
-                        <button type='submit'>Criar</button>
+                        <button className='btn btn-secondary mb-5' type='submit'>Criar</button>
                         
                     </form>
 
                 </div>
-                </div>
+            </div>
 
                 
                 
