@@ -10,7 +10,6 @@ const IsLogged = props => {
     if(isLoading){
         return <p>Loading...</p>
     }
-    // const token = localStorage.getItem(loggedInUser.jwt)
     
 
     if(!loggedInUser.user._id) {

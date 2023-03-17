@@ -1,26 +1,20 @@
 import {NavLink} from 'react-router-dom'
 import {useContext} from 'react'
-// import {ThemeContext} from '../context/theme.context'
 import {AuthContext} from '../context/auth.context'
 
 
 
 const Navbar = () => {
     
-  // const {theme, toggleTheme} = useContext(ThemeContext)
   const {logout, loggedInUser} = useContext(AuthContext)
   const admin = process.env.REACT_APP_ADMIN_VALIDATION;
   
-
-
     return ( 
 
       <nav className={'navbar bg-light'}>
-        {/* <nav className={`navbar bg-${theme}`}> */}
 
         <div className="container-fluid">
 
-            
           <NavLink className="navbar-brand" to="/"> 
             <span className="navbar-text">  Página inicial</span>
           </NavLink> 
@@ -36,8 +30,6 @@ const Navbar = () => {
                 <span className="navbar-text">  Login </span>
             </NavLink>
           )}
-
-          {/* <button className="navbar-text" onClick={() => toggleTheme()}>Mudar tema</button> */}
             
 
           {loggedInUser.jwt && (

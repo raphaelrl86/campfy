@@ -17,10 +17,10 @@ const CampCard = ({deleteCamp, camp}) => {
                         <div className="card-block px-6 ">
                             <h4 className="card-title mt-2 p-2">{ camp.campName }</h4>
                             <p className="card-text">{camp.description}</p>
-                            <Link to={`/camps/${camp._id}`} className="mt-auto btn btn-primary m-2">Ver detalhes</Link>
+                            <Link to={`/camps/${camp._id}`} className="mt-auto btn btn-secondary m-2">Ver detalhes</Link>
                             
                             {loggedInUser.user.email === admin && (
-                                <Link to={`/edit/camp/${camp._id}`} className="mt-auto btn btn-primary m-2">Editar</Link> 
+                                <Link to={`/edit/camp/${camp._id}`} className="mt-auto btn btn-secondary m-2">Editar</Link> 
                             )}
 
                             {loggedInUser.user.email === admin && (

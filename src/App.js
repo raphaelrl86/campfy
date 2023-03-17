@@ -34,8 +34,6 @@ function App() {
         <Route path='/user/:userId' element={<IsLogged><UserProfilePage/></IsLogged>} />
       </Routes>
       </AuthProvider>
-      
-
       <Footer/>
   
     </div>
