@@ -21,7 +21,7 @@ const EditCampingPage = () => {
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
     const [loading, setLoading] = useState(true)
-   const [uploading, setUploading] = useState(false)
+    const [uploading, setUploading] = useState(false)
     const {loggedInUser} = useContext(AuthContext)
 
     const headers = {

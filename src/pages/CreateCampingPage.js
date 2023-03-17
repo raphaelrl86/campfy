@@ -16,6 +16,7 @@ const CreateCampingPage = () => {
     const [email, setEmail] = useState('')
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
+    const [uploading, setUploading] = useState(false)
 
     const {loggedInUser} = useContext(AuthContext)
 
@@ -60,6 +61,7 @@ const CreateCampingPage = () => {
         axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
         .then(response => {
             setcampImage(response.data.url)
+            setUploading(false)
             Swal.fire('upload ok')
         })
         .catch(err => console.log(err))
@@ -196,7 +198,7 @@ const CreateCampingPage = () => {
                             </div>
                         </div>
 
-                        <button className='btn btn-secondary mb-5' type='submit'>Criar</button>
+                        <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Criar</button>
                         
                     </form>
 
