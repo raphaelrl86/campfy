@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/auth.context"
 import Swal from 'sweetalert2'
 
-
 const CreateCampingPage = () => { 
 
     const [campName, setCampName] = useState('')
@@ -17,20 +16,14 @@ const CreateCampingPage = () => {
     const [description, setDescription] = useState('')
     const [convenience, setConvenience] = useState('')
     const [uploading, setUploading] = useState(false)
-
     const {loggedInUser} = useContext(AuthContext)
-
     const navigate = useNavigate()
-
-    const headers = {
-           
+    const headers = { 
         'Authorization': `Bearer ${loggedInUser.jwt}`
-
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-
         const newCamp = {
             campName,
             campImage,
@@ -42,19 +35,14 @@ const CreateCampingPage = () => {
             description,
             convenience
         }
-
         axios.post(`${process.env.REACT_APP_API_URL}/camps`, newCamp, {headers})
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Acampamento criado!')
                 navigate('/')
-
-
             })
             .catch(err => console.log(err))
-
     }
-
     const handleUpload = e => {
         const uploadData = new FormData()
         uploadData.append('campImage', e.target.files[0])
@@ -65,13 +53,9 @@ const CreateCampingPage = () => {
             Swal.fire('upload ok')
         })
         .catch(err => console.log(err))
-        
     }
-
     return ( 
-        
         <div>
-
             <div className="py-6 bg-gray-100">
                 <div className= 'container-fluid'>
                     <div className='text-center pb-lg-4 pt-5'>
@@ -79,7 +63,6 @@ const CreateCampingPage = () => {
                     </div>
                 </div>
             </div>
-
             <div class="form-group d-flex justify-content-center">
                 <div class="container ">
                     <form onSubmit={e => handleSubmit(e)}>
@@ -95,7 +78,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -108,7 +90,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -120,9 +101,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
-                        
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -134,7 +112,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -146,7 +123,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -158,8 +134,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -171,7 +145,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -183,7 +156,6 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
                                 <input
@@ -197,16 +169,10 @@ const CreateCampingPage = () => {
                                 />
                             </div>
                         </div>
-
-                        <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Criar</button>
-                        
+                        <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Criar</button>                     
                     </form>
-
                 </div>
-            </div>
-
-                
-                
+            </div>              
         </div>
      );
 }

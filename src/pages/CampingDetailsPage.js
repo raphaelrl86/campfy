@@ -63,26 +63,17 @@ const CampingDetailsPage = props => {
         })
         .catch(err => console.log(err))
     }
-
-
     if(!camp) {
         return <p>Loading...</p>
     }
-
     return ( 
-            <div>
-                
+            <div>                
                 <CampDetailCard camp={camp} key={camp._id} />
-
                 <div className="row">
-                    
                     <h4 className="mb-3">Comentários</h4>
- 
                     <form onSubmit={e => handleSubmit(e)}>
-
                         <div className="d-flex justify-content-center mb-3">
                             <p className="mb-0">
-                            
                                 <label for="exampleFormControlInput1">Escreva seu comentário</label>
                                 <textarea
                                     type='text'
@@ -100,17 +91,11 @@ const CampingDetailsPage = props => {
                                         min="1" 
                                         max="5"
                                 />
-                            
-
                             </p>
-
                         </div>
-
                         <button className='btn btn-secondary mb-3' type='submit'>Enviar</button>
                         <hr className="my-0 mt-2" />
-
                     </form>
-
                         <div className="row">
                             { camp.commentary.length > 0 && camp.commentary.map(commentary => {
                                 return (
@@ -118,7 +103,6 @@ const CampingDetailsPage = props => {
                                 )
                             })}
                         </div>
-  
                 </div>
         </div>
     );

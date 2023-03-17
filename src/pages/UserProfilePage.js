@@ -25,8 +25,6 @@ const UserProfilePage = () => {
     if(!loggedInUser) {
         return <p>Logue no site...</p>
     }
-   
-
     return (
         <div className="container mb-4">
             <ProfileCard user={user} key={user._id}/>
