@@ -5,12 +5,9 @@ import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom';
 import { AuthContext } from "../context/auth.context"
 
-
-
 const EditUserProfilePage = () => { 
 
     const { userId } = useParams()
-
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [email, setEmail] = useState('')
@@ -18,16 +15,10 @@ const EditUserProfilePage = () => {
     const [profileImage, setProfileImage] = useState('')
     const [loading, setLoading] = useState(true)
     const [uploading, setUploading] = useState(false)
-    
-
     const {loggedInUser} = useContext(AuthContext)
-
     const navigate = useNavigate()
-
-    const headers = {
-           
+    const headers = {    
         'Authorization': `Bearer ${loggedInUser.jwt}`
-
     }
 
     useEffect (() => {
@@ -47,11 +38,9 @@ const EditUserProfilePage = () => {
             setProfileImage(profileImage)
             setLoading(false)
     })
-    }, [userId])
-    
+    }, [userId])  
     const handleSubmit = e => {
         e.preventDefault()
-
         const updatedUser = {
             name,
             surname,
@@ -59,7 +48,6 @@ const EditUserProfilePage = () => {
             address,
             profileImage
         }
-
         axios.put(`${process.env.REACT_APP_API_URL}/users/${userId}`, updatedUser, {headers})
             .then(response => {
                 console.log(response.data)
@@ -69,9 +57,7 @@ const EditUserProfilePage = () => {
 
             })
             .catch(err => console.log(err))
-
     }
-
     const handleUpload = e => {
         const uploadData = new FormData()
         setUploading(true)
@@ -84,17 +70,12 @@ const EditUserProfilePage = () => {
         })
         .catch(err => console.log(err))
     }
-
     return (         
-
         <div>
             <h1>Editar usuário</h1>
-
             {!loading && (
-
             <div class="form-group d-flex justify-content-center">
             <div class="container "> 
-
                 <form onSubmit={e => handleSubmit(e)}>
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
@@ -106,7 +87,6 @@ const EditUserProfilePage = () => {
                             placeholder="Nome"
                         />
                     </div>
-
                     <div>
                         <input
                             className='form-control'
@@ -117,7 +97,6 @@ const EditUserProfilePage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -129,7 +108,6 @@ const EditUserProfilePage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -141,7 +119,6 @@ const EditUserProfilePage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -152,17 +129,12 @@ const EditUserProfilePage = () => {
                         />
                     </div>
                     </div>
-
-                    <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Salvar alterações</button>
-                    
+                    <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Salvar alterações</button>                   
                 </form>
-
                 </div>
                 </div>
             )}
-        </div>
-    
-     );
-    
+        </div>  
+     );  
 }
 export default EditUserProfilePage;

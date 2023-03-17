@@ -3,8 +3,6 @@ import Banner from '../components/Banner';
 import Jumbotron from '../components/Jumbotron';
 
 const HomePage = () => {
-
-
     return ( 
         <div className="HomePage">
             <CarouselImage/>
@@ -12,6 +10,5 @@ const HomePage = () => {
             <Jumbotron/>
         </div>
      );
-}
- 
+} 
 export default HomePage;

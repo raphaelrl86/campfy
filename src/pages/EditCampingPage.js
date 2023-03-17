@@ -5,12 +5,9 @@ import Swal from 'sweetalert2'
 import { useParams } from 'react-router-dom';
 import { AuthContext } from "../context/auth.context"
 
-
-
 const EditCampingPage = () => { 
 
     const { campId } = useParams()
-
     const [campName, setCampName] = useState('')
     const [campImage, setCampImage] = useState('')
     const [city, setCity] = useState('')
@@ -24,14 +21,10 @@ const EditCampingPage = () => {
     const [uploading, setUploading] = useState(false)
     const {loggedInUser} = useContext(AuthContext)
 
-    const headers = {
-           
+    const headers = {      
         'Authorization': `Bearer ${loggedInUser.jwt}`
-
     }
-
     const navigate = useNavigate()
-
     useEffect (() => {
         axios.get(`${process.env.REACT_APP_API_URL}/camps/${campId}`, {headers})
         .then(response => {
@@ -58,7 +51,6 @@ const EditCampingPage = () => {
             setLoading(false)
     })
     }, [campId])
-    
     const handleSubmit = e => {
         e.preventDefault()
 
@@ -73,19 +65,14 @@ const EditCampingPage = () => {
             description,
             convenience
         }
-
         axios.put(`${process.env.REACT_APP_API_URL}/camps/${campId}`, updatedCamp, {headers})
             .then(response => {
                 console.log(response.data)
                 Swal.fire('Acampamento atualizado!')
                 navigate('/')
-
-
             })
             .catch(err => console.log(err))
-
     }
-
     const handleUpload = e => {
          const uploadData = new FormData()
          setUploading(true)
@@ -101,11 +88,7 @@ const EditCampingPage = () => {
              .catch(err => console.log(err))
      }
 
-
     return ( 
-
-        
-
         <div>
             <div className="py-6 bg-gray-100">
                 <div className= 'container-fluid'>
@@ -114,12 +97,9 @@ const EditCampingPage = () => {
                     </div>
                 </div>
             </div>
-
             {!loading && (
-
             <div class="form-group d-flex justify-content-center">
             <div class="container ">                    
-
                 <form onSubmit={e => handleSubmit(e)}>
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
@@ -132,7 +112,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -144,7 +123,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -156,7 +134,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -168,7 +145,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -180,7 +156,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -192,7 +167,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -204,7 +178,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -216,7 +189,6 @@ const EditCampingPage = () => {
                         />
                     </div>
                     </div>
-
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
                         <input
@@ -226,18 +198,13 @@ const EditCampingPage = () => {
                             placeholder="Imagem"
                         />
                     </div>
-                    </div>
-                    
-                    <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Editar</button>
-                    
-                    
+                    </div>                   
+                    <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Editar</button>                  
                 </form>
-
                 </div>
                 </div>
             )}
-        </div>
-    
+        </div>  
      );
     
 }

@@ -13,9 +13,6 @@ const CampingsListPage = () => {
     const headers = {           
         'Authorization': `Bearer ${loggedInUser.jwt}`
     }
-    
-    
-
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_API_URL}/camps`)
         .then(response => {
@@ -23,7 +20,6 @@ const CampingsListPage = () => {
         })
         .catch(err => console.log(err))
     }, [refresh])
-
     const deleteCamp = campId => {
         axios.delete(`${process.env.REACT_APP_API_URL}/camps/${campId}`, {headers})
         .then(response => {
@@ -39,7 +35,6 @@ const CampingsListPage = () => {
         })
         .catch(err => console.log(err))
     }
-
     return (
         <div className="container">
 
