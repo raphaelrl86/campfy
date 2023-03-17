@@ -78,109 +78,120 @@ const CreateCampingPage = () => {
                 </div>
             </div>
 
-            <div className="container text-center pt-1">
-                <div className="row pt-3"></div>
+            <div class="form-group d-flex justify-content-center">
+                <div class="container ">
+                    <form onSubmit={e => handleSubmit(e)}>
 
-                <form onSubmit={e => handleSubmit(e)}>
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={campName}
+                                    onChange={e => setCampName(e.target.value)}
+                                    placeholder="Nome"
+                                />
+                            </div>
+                        </div>
 
-                    
-                    
-                    <div className="col-6">
-                        <div className='col-md-6'>
+                        
+
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={city}
+                                    onChange={e => setCity(e.target.value)}
+                                    placeholder="Cidade"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={state}
+                                    onChange={e => setState(e.target.value)}
+                                    placeholder="Estado"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={country}
+                                    onChange={e => setCoutry(e.target.value)}
+                                    placeholder="País"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="text-center mb-3">
+                            <div class="form-outline mb-4">
+                                <input
+                                    className='form-control'
+                                    type='text'
+                                    value={address}
+                                    onChange={e => setAddress(e.target.value)}
+                                    placeholder="Endereço"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
                             <input
-                                type='text'
-                                value={campName}
-                                onChange={e => setCampName(e.target.value)}
-                                placeholder="Nome"
+                                type='email'
+                                value={email}
+                                onChange={e => setEmail(e.target.value)}
+                                placeholder="e-mail"
                             />
                         </div>
-                    </div>
 
-                    
-
-                    <div className="col-6">
-                        <div className='col-md-6'>
+                        <div>
                             <input
                                 type='text'
-                                value={city}
-                                onChange={e => setCity(e.target.value)}
-                                placeholder="Cidade"
+                                value={description}
+                                onChange={e => setDescription(e.target.value)}
+                                placeholder="Descrição"
                             />
                         </div>
-                    </div>
 
-                    <div>
-                        <input
-                            type='text'
-                            value={state}
-                            onChange={e => setState(e.target.value)}
-                            placeholder="Estado"
-                        />
-                    </div>
+                        <div>
+                            <input
+                                type='text'
+                                value={convenience}
+                                onChange={e => setConvenience(e.target.value)}
+                                placeholder="Comodidades"
+                            />
+                        </div>
 
-                    <div>
-                        <input
-                            type='text'
-                            value={country}
-                            onChange={e => setCoutry(e.target.value)}
-                            placeholder="País"
-                        />
-                    </div>
+                        <div>
+                        
+                            <input
+                                className="form-control"
+                                id="formFile"
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                onChange={e => handleUpload(e)}
+                                placeholder="Imagem"
+                            />
+                        </div>
 
-                    <div>
-                        <input
-                            type='text'
-                            value={address}
-                            onChange={e => setAddress(e.target.value)}
-                            placeholder="Endereço"
-                        />
-                    </div>
-
-                    <div>
-                        <input
-                            type='email'
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            placeholder="e-mail"
-                        />
-                    </div>
-
-                    <div>
-                        <input
-                            type='text'
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
-                            placeholder="Descrição"
-                        />
-                    </div>
-
-                    <div>
-                        <input
-                            type='text'
-                            value={convenience}
-                            onChange={e => setConvenience(e.target.value)}
-                            placeholder="Comodidades"
-                        />
-                    </div>
-
-                    <div>
-                    
-                        <input
-                            className="form-control"
-                            id="formFile"
-                            type="file"
-                            accept="image/*"
-                            multiple
-                            onChange={e => handleUpload(e)}
-                            placeholder="Imagem"
-                        />
-                    </div>
-
-                    <button type='submit'>Criar</button>
-                    
-                </form>
+                        <button type='submit'>Criar</button>
+                        
+                    </form>
 
                 </div>
+                </div>
+
+                
                 
         </div>
      );

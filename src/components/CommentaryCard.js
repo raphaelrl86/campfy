@@ -4,10 +4,11 @@ import { AuthContext } from "../context/auth.context"
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
-const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { //TO-DO: ver como chamar o método de update
+const CommentaryCard = ({comments, deleteCommentary, updateCommentary}) => { //TO-DO: ver como chamar o método de update
 
-    const [rating, setRating] = useState()
-    const [setCommentary] = useState()
+    const [rating, setRating] = useState('')
+    const [commentary, setCommentary] = useState('')
+    const [refresh, setRefresh ] = useState(true)
     const navigate = useNavigate()
     
     const {loggedInUser} = useContext(AuthContext)
@@ -22,15 +23,17 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { /
     });
 
     useEffect (() => {
-        axios.get(`${process.env.REACT_APP_API_URL}/commentary/${commentary._id}`, {headers})
+        axios.get(`${process.env.REACT_APP_API_URL}/commentary/${comments._id}`, {headers})
         .then(response => {
             let {
-                commentary
+                commentary,
+                rating
 
             } = response.data 
                 setCommentary(commentary)
+                setRating(rating)
         })
-    },[commentary._id])/*, [campId])*/ //TO-DO: ver se precisa do campId, remover parênteses
+    },[comments._id, refresh])/*, [campId])*/ //TO-DO: ver se precisa do campId, remover parênteses
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -40,7 +43,7 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { /
             rating
         }
 
-        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${commentary._id}`, {updateCommentary}, {headers})
+        axios.put(`${process.env.REACT_APP_API_URL}/commentary/${comments._id}`, updateCommentary, {headers})
         .then(response => {
             Swal.fire({
                 position: 'top-middle',
@@ -49,7 +52,8 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { /
                 showConfirmButton: false,
                 timer: 1000
               })
-            navigate('/') 
+            // navigate('/') 
+            setRefresh(!refresh)
         })
         .catch(err => console.log(err))
     }
@@ -72,21 +76,29 @@ const CommentaryCard = ({commentary, deleteCommentary, updateCommentary}) => { /
                 <hr class="hr hr-blurry"/>          
                 <div classNameName="card-body">
                     <form onSubmit={ e => handleSubmit(e) }>
-                        <h5 classNameName="card-title">{ commentary.user.name } { commentary.user.surname }</h5>
+                        <h5 classNameName="card-title">{ comments.user.name } { comments.user.surname }</h5>
                         <input 
                             type="text" 
                             classNameName="form-control m-2 block px-2" 
-                            value={commentary.commentary}
+                            value={commentary}
                             onChange= {e => setCommentary(e.target.value)}
                         />
                         <input 
                             type="text" 
                             classNameName="form-control m-2 block px-2" 
-                            value={commentary.rating}
+                            value={rating}
                             onChange= {e => setRating(e.target.value)}
                         />
-                        <button className="btn btn-primary m-1"onClick={() => updateCommentary(commentary._id)}> Editar </button> //TO-DO: ver como chamar o método de update
-                        <button className="btn btn-danger m-1" onClick={() => deleteCommentary(commentary._id)}> Deletar </button>
+                        {/* <button type='submit' className="btn btn-primary m-1"onClick={() => updateCommentary(comments._id)}> Editar </button> //TO-DO: ver como chamar o método de update */}
+
+                        {loggedInUser.user.email === comments.user.email && (
+                            <button type='submit' className="btn btn-primary m-1"> Editar </button> //TO-DO: ver como chamar o método de update
+                        )}
+                        
+                        {loggedInUser.user.email === comments.user.email && (
+                            <button className="btn btn-danger m-1" onClick={() => deleteCommentary(comments._id)}> Deletar </button>
+                        )}
+                        
                     </form>
                 </div>
             </div>
