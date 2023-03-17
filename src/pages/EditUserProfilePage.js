@@ -36,7 +36,7 @@ const EditUserProfilePage = () => {
             let {
             name,
             surname,
-            email, 
+            email,
             address,
             profileImage
         } = response.data
@@ -79,7 +79,7 @@ const EditUserProfilePage = () => {
         axios.post(`${process.env.REACT_APP_API_URL}/users/upload`, uploadData, {headers})
         .then(response => {
             setProfileImage(response.data.url)
-            alert('Foto enviada!')
+            Swal.fire('Foto enviada!')
             setUploading(false)
         })
         .catch(err => console.log(err))
@@ -92,9 +92,14 @@ const EditUserProfilePage = () => {
 
             {!loading && (
 
+            <div class="form-group d-flex justify-content-center">
+            <div class="container "> 
+
                 <form onSubmit={e => handleSubmit(e)}>
-                    <div>
+                    <div className="text-center mb-3">
+                    <div className="form-outline mb-4">
                         <input
+                            className='form-control'
                             type='text'
                             value={name}
                             onChange={e => setName(e.target.value)}
@@ -104,43 +109,56 @@ const EditUserProfilePage = () => {
 
                     <div>
                         <input
+                            className='form-control'
                             type='text'
                             value={surname}
                             onChange={e => setSurname(e.target.value)}
                             placeholder="Sobrenome"
                         />
                     </div>
+                    </div>
 
-                    <div>
+                    <div className="text-center mb-3">
+                    <div className="form-outline mb-4">
                         <input
+                            className='form-control'
                             type='text'
                             value={email}
                             onChange={e => setEmail(e.target.value)}
-                            placeholder="Estado"
+                            placeholder="Email"
                         />
                     </div>
+                    </div>
 
-
-                    <div>
+                    <div className="text-center mb-3">
+                    <div className="form-outline mb-4">
                         <input
+                            className='form-control'
                             type='text'
                             value={address}
                             onChange={e => setAddress(e.target.value)}
                             placeholder="Endereço"
                         />
                     </div>
+                    </div>
 
-                    <div>
+                    <div className="text-center mb-3">
+                    <div className="form-outline mb-4">
                         <input
+                            className='form-control'
                             type='file'
                             onChange={e => handleUpload(e)}
                             placeholder="Foto perfil"
                         />
                     </div>
+                    </div>
 
-                    <button type='submit' disabled={uploading}>Salvar alterações</button>
+                    <button className='btn btn-secondary mb-5' type='submit' disabled={uploading}>Salvar alterações</button>
                     
                 </form>
+
+                </div>
+                </div>
             )}
         </div>
     

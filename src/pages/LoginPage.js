@@ -49,7 +49,7 @@ const LoginPage = props => {
                             <div className="text-center">
                             <img src={campIllustration}
                                 style={{width:"185px"}} alt="logo"/>
-                            <h4 className="mt-1 mb-5 pb-1">Frase de efeito</h4>
+                            <h4 className="mt-1 mb-5 pb-1">Faça seu login</h4>
                             </div>
 
                             <form onSubmit={handleSubmit}>

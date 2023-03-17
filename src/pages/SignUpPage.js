@@ -43,7 +43,7 @@ const SignUpPage = props => {
 
             <section classNameName="vh-100" style={{backgroundColor: '#013c4c'}}>
 
-                <div className="container h-100">
+                <div className="container py-5 h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
                         <div className="col-lg-12 col-xl-11">
                             <div className="card text-black" style={{borderRadius: '25px'}}>
