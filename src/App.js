@@ -9,6 +9,7 @@ import UserProfilePage from './pages/UserProfilePage';
 import EditUserProfilePage from './pages/EditUserProfilePage';
 import LoginPage from './pages/LoginPage'
 import EditCampingPage from './pages/EditCampingPage';
+import ErrorPage from './pages/ErrorPage';
 import Navbar from "./components/Navbar";
 import Footer from './components/Footer';
 import IsLogged from './components/isLogged';
@@ -32,6 +33,7 @@ function App() {
         <Route path='/camps/:campId' element={<IsLogged><CampingDetailsPage /></IsLogged>} />
         <Route path='/edit/users/:userId' element={<IsLogged><EditUserProfilePage /></IsLogged>} />
         <Route path='/user/:userId' element={<IsLogged><UserProfilePage/></IsLogged>} />
+        <Route path='/*' element={ <ErrorPage/> } />
       </Routes>
       </AuthProvider>
       <Footer/>
