@@ -126,7 +126,7 @@ const CampingDetailsPage = props => {
                     <div className="row">
                         { camp.commentary.length > 0 && camp.commentary.map(commentary => {
                             return (
-                                <CommentaryCard deleteCommentary={deleteCommentary} commentary={commentary} rating={rating} key={commentary._id} />     
+                                <CommentaryCard deleteCommentary={deleteCommentary} comments={commentary} rating={rating} key={commentary._id} />     
                             )
                         })}
                     </div>

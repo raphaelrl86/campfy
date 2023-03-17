@@ -45,11 +45,6 @@ const CampCard = ({deleteCamp, camp}) => {
     </div>
             
 
-           
-            
-            
- 
-
      );
 }
  
