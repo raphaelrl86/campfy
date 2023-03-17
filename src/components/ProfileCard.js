@@ -10,15 +10,15 @@ const ProfileCard = ({user}) => {
                 <div className="col col-lg-9 col-xl-7">
                     <div className="card">
                     <div className="rounded-top d-flex flex-row" style={{height:"200px"}}>
-                        <div className="ms-4 mt-5 d-flex flex-column" style={{width:"150px"}}>
+                        <div className="ms-4 mt-3 d-flex flex-column" style={{width:"150px"}}>
                         
                         <img src={user.profileImage} alt="Imagem de perfil" className="img-fluid img-thumbnail mt-4 mb-2" style={{width:"150px", zIndex: '1'}}/>
-                        <Link to={`/edit/users/${user._id}`} type="button" className="btn btn-outline-dark" style={{zIndex: '1'}}>
+                        <Link to={`/edit/users/${user._id}`} type="button" className="btn btn-secondary mt-2 mb-3" style={{zIndex: '1'}}>
                             Editar perfil 
                         </Link>
                         </div>
 
-                        <div className="ms-3" style={{marginTop: '130px'}}>
+                        <div className="ms-3" style={{marginTop: '100px'}}>
                             <h5>Olá {user.name} {user.surname}!</h5>
                         </div> 
                     </div>
