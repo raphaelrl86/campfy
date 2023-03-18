@@ -45,12 +45,13 @@ const CreateCampingPage = () => {
     }
     const handleUpload = e => {
         const uploadData = new FormData()
+        setUploading(true)
         uploadData.append('campImage', e.target.files[0])
         axios.post(`${process.env.REACT_APP_API_URL}/camps/upload`, uploadData, {headers})
         .then(response => {
             setcampImage(response.data.url)
             setUploading(false)
-            Swal.fire('upload ok')
+            Swal.fire('Imagem enviada com sucesso!')
         })
         .catch(err => console.log(err))
     }
@@ -136,7 +137,7 @@ const CreateCampingPage = () => {
                         </div>
                         <div className="text-center mb-3">
                             <div class="form-outline mb-4">
-                                <input
+                                <textarea
                                     className='form-control'
                                     type='text'
                                     value={description}
@@ -163,7 +164,6 @@ const CreateCampingPage = () => {
                                     id="formFile"
                                     type="file"
                                     accept="image/*"
-                                    multiple
                                     onChange={e => handleUpload(e)}
                                     placeholder="Imagem"
                                 />

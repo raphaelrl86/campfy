@@ -169,7 +169,7 @@ const EditCampingPage = () => {
                     </div>
                     <div className="text-center mb-3">
                     <div className="form-outline mb-4">
-                        <input
+                        <textarea
                             className='form-control'
                             type='text'
                             value={description}

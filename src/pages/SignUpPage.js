@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import campIllustration from '../images/campIllustration.png'
 import Swal from 'sweetalert2'
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 
 const SignUpPage = props => {
     const [name, setName] = useState('')
@@ -10,6 +11,7 @@ const SignUpPage = props => {
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate()
     
     const handleSubmit =e => {
@@ -93,19 +95,28 @@ const SignUpPage = props => {
                                                         />
                                                     </div>
                                                 </div>
+                                                
                                                 <div className="d-flex flex-row align-items-center mb-4">
-                                                    <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
-                                                    <div className="form-outline flex-fill mb-0">
-                                                        <input 
+                                                    <div className="input-group">
+                                                        <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
+                                                        <div className="form-outline flex-fill mb-0">
+                                                            <input 
                                                             className="form-control"
                                                             id="form3Example4c"
-                                                            type="password"
+                                                            type={showPassword ? 'text' : 'password'}
                                                             value={password}
                                                             onChange={e => setPassword(e.target.value)}
                                                             placeholder="Senha"
-                                                        />
+                                                            />
+                                                        </div>
+                                                        
+                                                        <span className="input-group-text" onClick={() => setShowPassword(!showPassword)}>
+                                                            {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}{' '}
+                                                        </span>
+                                                        
                                                     </div>
                                                 </div>
+
                                                 <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                     <button type='submit' className="btn btn-primary btn-lg">SignUp</button>
                                                 </div>
