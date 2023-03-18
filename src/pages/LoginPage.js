@@ -4,11 +4,13 @@ import { useState } from 'react'
 import {useContext} from 'react'
 import {AuthContext} from '../context/auth.context'
 import campIllustration from '../images/campIllustration.png'
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import Swal from 'sweetalert2'
 
 const LoginPage = props => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [showPassword, setShowPassword] = useState(false);
     const {refresh, setRefresh} = useContext(AuthContext)
     const navigate = useNavigate()
 
@@ -58,15 +60,21 @@ const LoginPage = props => {
                                 />
                             </div>
                             <div className="form-outline mb-4">
-                                <input 
-                                type="password" 
-                                id="form2Example22" 
-                                className="form-control"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                placeholder="Senha"
-                                />                             
+                                <div className="input-group">
+                                    <input 
+                                    type={showPassword ? 'text' : 'password'} 
+                                    id="form2Example22" 
+                                    className="form-control"
+                                    value={password}
+                                    onChange={e => setPassword(e.target.value)}
+                                    placeholder="Senha"
+                                    />
+                                    <span className="input-group-text" onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassword ? <EyeInvisibleOutlined /> : <EyeOutlined />}{' '}
+                                    </span>
+                                </div>                             
                             </div>
+
                             <div className="text-center pt-1 mb-5 pb-1">
                                 <button className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type='submit'>Log
                                 in</button>
