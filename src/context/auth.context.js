@@ -6,7 +6,7 @@ const AuthContext = createContext()
 const AuthProvider = (props) => {
 
     const [loggedInUser, setLoggedInUser] = useState({user: {}})
-    // const [loggedInUser, setLoggedInUser] = useState({token: '', user: {}})
+    
     const [isLoading, setIsLoading] = useState(true)
     const [refresh, setRefresh] = useState(false)
     
