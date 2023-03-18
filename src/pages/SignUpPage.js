@@ -11,6 +11,7 @@ const SignUpPage = props => {
     const [address, setAddress] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
+    
     const handleSubmit =e => {
         e.preventDefault()
         const payload = {
@@ -18,7 +19,7 @@ const SignUpPage = props => {
             surname,
             email, 
             address,
-            password,
+            password
         }
         axios.post(`${process.env.REACT_APP_API_URL}/sign-up`, payload)
             .then(response => {
